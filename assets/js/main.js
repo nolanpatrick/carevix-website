@@ -77,7 +77,12 @@
   const heroCanvas = document.getElementById("cells");
   if (heroCanvas) {
     const ctx = heroCanvas.getContext("2d");
-    const supportsFilter = "filter" in ctx;
+    // The out-of-focus field is drawn small and stretched up: the upscale gives the
+    // blur for free (a canvas blur filter is re-applied per shape and is very slow).
+    const field = document.createElement("canvas");
+    const fctx = field.getContext("2d");
+    const FIELD_SCALE = 0.3;
+    const ZOOM = 1.7;
     let W = 0, H = 0, dpr = 1, cells = [], dots = [];
     const lens = { x: 0, y: 0, tx: 0, ty: 0, r: 120 };
     let lastPointer = 0, running = false, t0 = performance.now();
@@ -88,6 +93,8 @@
       W = rect.width; H = rect.height;
       heroCanvas.width = W * dpr; heroCanvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      field.width = Math.max(1, Math.ceil(W * FIELD_SCALE)); field.height = Math.max(1, Math.ceil(H * FIELD_SCALE));
+      fctx.setTransform(FIELD_SCALE, 0, 0, FIELD_SCALE, 0, 0);
       const small = W < 760;
       const scale = small ? 0.8 : 1;
       lens.r = small ? 86 : 130;
@@ -98,12 +105,18 @@
       draw(performance.now());
     }
 
-    function scene(sharp) {
+    // Draws the slide into g. With `near`, skips anything that can't show inside the lens.
+    function scene(g, sharp, near) {
+      const reach = near ? lens.r / ZOOM : Infinity;
+      const visible = (x, y, pad) => !near || Math.hypot(x - lens.x, y - lens.y) < reach + pad;
+      g.fillStyle = sharp ? "rgba(91,75,184,0.75)" : "rgba(91,75,184,0.35)";
+      g.beginPath();
       dots.forEach((d) => {
-        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = sharp ? "rgba(91,75,184,0.75)" : "rgba(91,75,184,0.35)"; ctx.fill();
+        if (!visible(d.x, d.y, d.r)) return;
+        g.moveTo(d.x + d.r, d.y); g.arc(d.x, d.y, d.r, 0, Math.PI * 2);
       });
-      cells.forEach((c) => drawCell(ctx, c, sharp));
+      g.fill();
+      cells.forEach((c) => { if (visible(c.x, c.y, c.r * 1.3)) drawCell(g, c, sharp); });
     }
 
     function step(now) {
@@ -130,16 +143,16 @@
     function draw() {
       ctx.clearRect(0, 0, W, H);
       // out-of-focus field
-      ctx.save();
-      if (supportsFilter) ctx.filter = "blur(2.5px)";
-      scene(false);
-      ctx.restore();
+      fctx.clearRect(0, 0, W, H);
+      scene(fctx, false, false);
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(field, 0, 0, W, H);
       // in-focus lens
       ctx.save();
       ctx.beginPath(); ctx.arc(lens.x, lens.y, lens.r, 0, Math.PI * 2); ctx.clip();
       ctx.fillStyle = "#FFFFFF"; ctx.fillRect(lens.x - lens.r, lens.y - lens.r, lens.r * 2, lens.r * 2);
-      ctx.translate(lens.x, lens.y); ctx.scale(1.7, 1.7); ctx.translate(-lens.x, -lens.y);
-      scene(true);
+      ctx.translate(lens.x, lens.y); ctx.scale(ZOOM, ZOOM); ctx.translate(-lens.x, -lens.y);
+      scene(ctx, true, true);
       ctx.restore();
       ctx.beginPath(); ctx.arc(lens.x, lens.y, lens.r, 0, Math.PI * 2);
       ctx.lineWidth = 2; ctx.strokeStyle = C.ink; ctx.stroke();
