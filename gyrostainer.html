@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GyroStainer · CareVix</title>
+<meta name="description" content="GyroStainer is a compact robot that automates Pap staining for cytology triage in low-resource settings.">
+<meta property="og:title" content="GyroStainer · CareVix">
+<meta property="og:description" content="GyroStainer is a compact robot that automates Pap staining for cytology triage in low-resource settings.">
+<meta property="og:image" content="assets/img/carevix-lockup.png">
+<link rel="icon" type="image/png" href="assets/img/carevix-symbol-solid.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="index.html"><img src="assets/img/carevix-lockup.png" alt="CareVix home" width="800" height="185"></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="gyrostainer.html" aria-current="page">GyroStainer</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="btn" href="get-involved.html">Get involved</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap split">
+    <div>
+      <h1>GyroStainer</h1>
+      <p class="lede">A compact robot that stains Pap slides the same way, every time. It brings lab-quality cytology triage to places that have no cytology lab.</p>
+      <div class="btn-row">
+        <a class="btn" href="#simulator">Run a protocol</a>
+        <a class="btn btn-ghost" href="get-involved.html#ngo">Ask about GyroStainer</a>
+      </div>
+    </div>
+    <div class="photo"><img src="assets/img/gyrostainer.jpg" alt="The GyroStainer prototype on a white background." width="1400" height="1460"></div>
+  </div>
+</section>
+
+<section class="section" id="simulator" style="background:#fff" aria-labelledby="sim-title">
+  <div class="wrap">
+    <h2 id="sim-title">Watch a Pap stain happen</h2>
+    <p class="lede mt-1">Ten stations sit in a ring. A rotating arm carries the slide holder from bath to bath, dipping, rinsing and shaking the slides at each one. Here it is, sped up.</p>
+    <div class="sim mt-3">
+      <div class="sim-stage">
+        <svg id="sim-svg" viewBox="0 0 400 400" role="img" aria-label="Top view of GyroStainer's ten stations and rotating arm">
+          <defs><linearGradient id="ea" x1="0" x2="1"><stop offset="0" stop-color="#E55F9A"/><stop offset=".55" stop-color="#22A4A6"/><stop offset="1" stop-color="#E55F9A"/></linearGradient></defs>
+          <circle cx="200" cy="200" r="168" fill="none" stroke="#E7E9F3" stroke-width="2"/>
+          <g id="stations"></g>
+          <g id="arm">
+            <rect x="194" y="70" width="12" height="130" rx="6" fill="#1E2657"/>
+            <rect id="holder" x="184" y="48" width="32" height="28" rx="5" fill="#5B4BB8" stroke="#fff" stroke-width="2"/>
+          </g>
+          <circle cx="200" cy="200" r="34" fill="#1E2657"/>
+          <circle cx="200" cy="200" r="12" fill="#E55F9A"/>
+        </svg>
+      </div>
+      <div class="sim-panel" aria-live="polite">
+        <div class="step-name" id="sim-name">Six slides loaded.</div>
+        <p class="step-detail" id="sim-detail">Press run to send them through the twelve steps of a Pap stain.</p>
+        <div class="sim-progress"><div id="sim-bar"></div></div>
+        <div class="sim-slide-preview">
+          <div class="glass-slide"><div class="smear" id="sim-smear"></div></div>
+          <span class="small">The smear takes on the stain colours as it goes.</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="sim-run" type="button">Run the protocol</button>
+          <button class="btn btn-ghost" id="sim-reset" type="button">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="specs-title">
+  <div class="wrap">
+    <h2 id="specs-title">Designed for small labs and hard conditions</h2>
+    <div class="spec-list">
+      <div class="spec"><strong>Up to 6 slides per run</strong><span>Sized for decentralised triage, where batches are small and reagents are precious.</span></div>
+      <div class="spec"><strong>About 21 minutes per run</strong><span>Fast enough for same-day results.</span></div>
+      <div class="spec"><strong>Open reagents, standard beakers</strong><span>No proprietary cartridges. Reagents can be sourced locally and baths lift out for cleaning.</span></div>
+      <div class="spec"><strong>Nine baths and a drying station</strong><span>The full Pap sequence, including rinses and fan drying, in one compact ring.</span></div>
+      <div class="spec"><strong>Touchscreen and browser control</strong><span>Pick a stored protocol on the device, or edit protocols from a web browser.</span></div>
+      <div class="spec"><strong>Works offline</strong><span>No continuous internet connection needed to run.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff" aria-labelledby="proof-title">
+  <div class="wrap split">
+    <div>
+      <h2 id="proof-title">Tested on real slides</h2>
+      <p class="lede mt-1">At the Geneva University Hospitals, GyroStainer stained 24 patient-derived cytology slides across four runs. HUG pathologists found the nuclear detail and cytoplasmic staining clear and interpretable.</p>
+      <p>Move over the image to look closer. These fields were stained by the prototype.</p>
+      <div class="scope-picker" aria-label="Choose a microscope field">
+        <button type="button" aria-pressed="true" data-target="scope1" data-src="assets/img/cells-1.jpg" data-alt="Pap-stained cervical cells in pink, teal and violet." data-caption="A field stained by GyroStainer.">Field one</button>
+        <button type="button" aria-pressed="false" data-target="scope1" data-src="assets/img/cells-2.jpg" data-alt="Cluster of Pap-stained cervical cells." data-caption="A cell cluster stained by GyroStainer.">Field two</button>
+        <button type="button" aria-pressed="false" data-target="scope1" data-src="assets/img/cells-hsil.jpg" data-alt="Pap-stained field with a high-grade lesion annotated." data-caption="A high-grade lesion, annotated by HUG pathologists.">An annotated lesion</button>
+      </div>
+    </div>
+    <div>
+      <div class="scope" id="scope1">
+        <img src="assets/img/cells-1.jpg" alt="Pap-stained cervical cells in pink, teal and violet." width="1021" height="766">
+        <div class="scope-lens" aria-hidden="true"></div>
+      </div>
+      <p class="photo-caption" id="scope1-caption">A field stained by GyroStainer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ai-title">
+  <div class="wrap split reverse">
+    <div>
+      <h2 id="ai-title">Faster review, with AI in the loop</h2>
+      <p class="lede mt-1">With EPFL's LTS5 lab, we are researching an algorithm that highlights suspicious cells on a digitised slide, so experts know where to look first.</p>
+      <p>It is part of our telecytology platform as a research tool. Once validated, it will be used in every deployment to save reviewers time, at no extra cost to our partners.</p>
+    </div>
+    <div>
+      <div class="photo"><img src="assets/img/microscope-review.jpg" alt="A specialist reviewing stained slides at a microscope connected to a screen." width="1400" height="1266" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" style="background:#fff">
+  <div class="wrap">
+    <div class="note">
+      <h3>Available on its own</h3>
+      <p style="margin:0">GyroStainer is part of every Wave and Loop setup, and cytology laboratories can also acquire it as a standalone device. <a class="text-link" href="get-involved.html#ngo">Get in touch</a> to talk about your laboratory's needs.</p>
+    </div>
+  </div>
+</section>
+<section class="cta-band section-tight">
+  <div class="wrap">
+    <h2>Let's bring screening and treatment closer to the women who need it.</h2>
+    <div class="btn-row">
+      <a class="btn" href="get-involved.html#ngo">Plan a programme with us</a>
+      <a class="btn btn-ghost" href="get-involved.html#invest">Support CareVix</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/img/carevix-lockup-light.png" alt="CareVix" width="800" height="185">
+        <p>Cervical cancer screening, triage and treatment of precancer, close to where women live.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="solutions.html">Wave and Loop</a></li>
+          <li><a href="gyrostainer.html">GyroStainer</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="get-involved.html">Get involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@carevix.ch">info@carevix.ch</a></li>
+          <li>Lausanne, Switzerland</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">© <span id="year">2026</span> CareVix. GyroStainer was developed at EPFL LTS5 in collaboration with HUG.</div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get involved · CareVix</title>
+<meta name="description" content="Partner with CareVix as an NGO or health programme, or support our work as an investor or funder.">
+<meta property="og:title" content="Get involved · CareVix">
+<meta property="og:description" content="Partner with CareVix as an NGO or health programme, or support our work as an investor or funder.">
+<meta property="og:image" content="assets/img/carevix-lockup.png">
+<link rel="icon" type="image/png" href="assets/img/carevix-symbol-solid.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="index.html"><img src="assets/img/carevix-lockup.png" alt="CareVix home" width="800" height="185"></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="gyrostainer.html">GyroStainer</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="btn" href="get-involved.html" aria-current="page">Get involved</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Let's work on this together</h1>
+    <p class="lede">Whether you run health programmes or want to fund them, there's a place for you in what we're building.</p>
+    <div class="tabs" role="tablist" aria-label="Who are you?">
+      <button role="tab" id="tab-ngo" aria-controls="ngo" aria-selected="true">I'm from an NGO or health programme</button>
+      <button role="tab" id="tab-invest" aria-controls="invest" aria-selected="false">I want to invest or fund</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap split" style="align-items:start">
+    <div>
+      <div class="tab-panel" id="ngo" role="tabpanel" aria-labelledby="tab-ngo">
+        <h2>For NGOs and health programmes</h2>
+        <p class="lede mt-1">You bring knowledge of the communities and the programme. We bring the screen-and-treat solution, and we plan the deployment with you.</p>
+        <ul class="offer-list">
+          <li><strong>A solution that fits</strong>Wave for high-demand sites, Loop for smaller or remote ones, in a mobile unit or a fixed clinic.</li>
+          <li><strong>The full pathway</strong>From HPV testing to on-site staining, remote expert review and treatment of CIN2 and CIN3.</li>
+          <li><strong>GyroStainer on its own</strong>For laboratories that only need reliable, automated Pap staining.</li>
+          <li><strong>Planned together</strong>We start with a conversation about the setting, the expected number of women and the existing health services.</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="invest" role="tabpanel" aria-labelledby="tab-invest" hidden>
+        <h2>For investors and funders</h2>
+        <p class="lede mt-1">Cervical cancer can be eliminated. Your support turns a working prototype and a proven workflow into deployments that reach women.</p>
+        <ul class="offer-list">
+          <li><strong>Pilot deployments</strong>Fund the first Wave and Loop sites with partner NGOs.</li>
+          <li><strong>Clinical validation</strong>Support the next GyroStainer studies: comparison with standard staining, repeatability and pilots in low-resource laboratories.</li>
+          <li><strong>AI-assisted review</strong>Help validate the algorithm that speeds up expert review.</li>
+          <li><strong>A strong foundation</strong>A team rooted in EPFL engineering and HUG clinical expertise.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="contact" id="contact">
+      <h2 style="font-size:var(--step-2)">Write to us</h2>
+      <p class="small mt-1">Or email us directly at <a class="text-link" href="mailto:info@carevix.ch">info@carevix.ch</a></p>
+      <form id="contact-form" novalidate>
+        <div class="form-grid">
+          <div><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="f-org">Organisation</label><input id="f-org" name="org" autocomplete="organization"></div>
+          <div><label for="f-type">I'm writing as</label>
+            <select id="f-type" name="type">
+              <option>NGO or health programme</option>
+              <option>Investor or funder</option>
+              <option>Laboratory interested in GyroStainer</option>
+              <option>Clinical or research partner</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required placeholder="Tell us about your programme or what you'd like to support."></textarea></div>
+        </div>
+        <div class="btn-row" style="margin-top:1.4rem"><button class="btn" type="submit">Send message</button></div>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/img/carevix-lockup-light.png" alt="CareVix" width="800" height="185">
+        <p>Cervical cancer screening, triage and treatment of precancer, close to where women live.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="solutions.html">Wave and Loop</a></li>
+          <li><a href="gyrostainer.html">GyroStainer</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="get-involved.html">Get involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@carevix.ch">info@carevix.ch</a></li>
+          <li>Lausanne, Switzerland</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">© <span id="year">2026</span> CareVix. GyroStainer was developed at EPFL LTS5 in collaboration with HUG.</div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
