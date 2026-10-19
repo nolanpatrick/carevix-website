@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GyroStainer · CareVix</title>
-<meta name="description" content="GyroStainer is a compact robot that automates Pap staining for cytology triage in low-resource settings.">
+<meta name="description" content="GyroStainer is a compact auto-stainer that delivers consistent slide staining, built for cytology triage in low-resource settings.">
 <meta property="og:title" content="GyroStainer · CareVix">
-<meta property="og:description" content="GyroStainer is a compact robot that automates Pap staining for cytology triage in low-resource settings.">
+<meta property="og:description" content="GyroStainer is a compact auto-stainer that delivers consistent slide staining, built for cytology triage in low-resource settings.">
 <meta property="og:image" content="assets/img/carevix-lockup.png">
 <link rel="icon" type="image/png" href="assets/img/carevix-symbol-solid.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,9 +25,11 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="technology.html">Technology</a></li>
       <li><a href="gyrostainer.html" aria-current="page">GyroStainer</a></li>
+      <li><a href="telecytology.html">Telecytology</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a class="btn" href="get-involved.html">Get involved</a></li>
+      <li><a class="btn" href="get-involved.html">Get in touch</a></li>
     </ul>
   </nav>
 </header>
@@ -37,11 +39,7 @@
   <div class="wrap split">
     <div>
       <h1>GyroStainer</h1>
-      <p class="lede">A compact robot that stains Pap slides the same way, every time. It brings lab-quality cytology triage to places that have no cytology lab.</p>
-      <div class="btn-row">
-        <a class="btn" href="#simulator">Run a protocol</a>
-        <a class="btn btn-ghost" href="get-involved.html#ngo">Ask about GyroStainer</a>
-      </div>
+      <p class="lede">A compact auto-stainer that delivers consistent staining every time. It can run different staining protocols. In CareVix it runs the Pap stain, bringing lab-quality cytology triage to places that have no cytology lab.</p>
     </div>
     <div class="photo"><img src="assets/img/gyrostainer.jpg" alt="The GyroStainer prototype on a white background." width="1400" height="1460"></div>
   </div>
@@ -50,32 +48,34 @@
 <section class="section" id="simulator" style="background:#fff" aria-labelledby="sim-title">
   <div class="wrap">
     <h2 id="sim-title">Watch a Pap stain happen</h2>
-    <p class="lede mt-1">Ten stations sit in a ring. A rotating arm carries the slide holder from bath to bath, dipping, rinsing and shaking the slides at each one. Here it is, sped up.</p>
+    <p class="lede mt-1">Ten stations sit in a ring. A rotating arm carries the slide holder from bath to bath, dipping the slides at each one. Here is our Pap protocol, sped up.</p>
     <div class="sim mt-3">
       <div class="sim-stage">
         <svg id="sim-svg" viewBox="0 0 400 400" role="img" aria-label="Top view of GyroStainer's ten stations and rotating arm">
           <defs><linearGradient id="ea" x1="0" x2="1"><stop offset="0" stop-color="#E55F9A"/><stop offset=".55" stop-color="#22A4A6"/><stop offset="1" stop-color="#E55F9A"/></linearGradient></defs>
-          <circle cx="200" cy="200" r="168" fill="none" stroke="#E7E9F3" stroke-width="2"/>
+          <circle cx="200" cy="200" r="178" fill="none" stroke="#E7E9F3" stroke-width="2"/>
           <g id="stations"></g>
           <g id="arm">
-            <rect x="194" y="70" width="12" height="130" rx="6" fill="#1E2657"/>
-            <rect id="holder" x="184" y="48" width="32" height="28" rx="5" fill="#5B4BB8" stroke="#fff" stroke-width="2"/>
+            <rect x="195" y="78" width="10" height="122" rx="5" fill="#1E2657"/>
+            <g id="holder">
+              <rect x="181" y="52" width="38" height="30" rx="5" fill="#5B4BB8" stroke="#fff" stroke-width="2"/>
+              <path d="M189 58v18M196.5 58v18M203.5 58v18M211 58v18" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
           </g>
-          <circle cx="200" cy="200" r="34" fill="#1E2657"/>
-          <circle cx="200" cy="200" r="12" fill="#E55F9A"/>
+          <circle cx="200" cy="200" r="30" fill="#1E2657"/>
+          <circle cx="200" cy="200" r="10" fill="#E55F9A"/>
         </svg>
       </div>
-      <div class="sim-panel" aria-live="polite">
-        <div class="step-name" id="sim-name">Six slides loaded.</div>
-        <p class="step-detail" id="sim-detail">Press run to send them through the twelve steps of a Pap stain.</p>
+      <div class="sim-panel">
+        <div class="sim-top">
+          <p class="sim-status" id="sim-status" aria-live="polite">Four slides loaded</p>
+          <button class="sim-pause" id="sim-pause" type="button" aria-pressed="false">Pause</button>
+        </div>
         <div class="sim-progress"><div id="sim-bar"></div></div>
+        <ol class="sim-steps" id="sim-steps"></ol>
         <div class="sim-slide-preview">
           <div class="glass-slide"><div class="smear" id="sim-smear"></div></div>
-          <span class="small">The smear takes on the stain colours as it goes.</span>
-        </div>
-        <div class="btn-row">
-          <button class="btn" id="sim-run" type="button">Run the protocol</button>
-          <button class="btn btn-ghost" id="sim-reset" type="button">Reset</button>
+          <span class="small">The smear takes on the stain colours as it goes. The real protocol takes about 21 minutes.</span>
         </div>
       </div>
     </div>
@@ -86,11 +86,11 @@
   <div class="wrap">
     <h2 id="specs-title">Designed for small labs and hard conditions</h2>
     <div class="spec-list">
-      <div class="spec"><strong>Up to 6 slides per run</strong><span>Sized for decentralised triage, where batches are small and reagents are precious.</span></div>
-      <div class="spec"><strong>About 21 minutes per run</strong><span>Fast enough for same-day results.</span></div>
+      <div class="spec"><strong>Up to 4 slides per run</strong><span>Sized for decentralised triage, where batches are small and reagents are precious.</span></div>
+      <div class="spec"><strong>About 21 minutes for a Pap stain</strong><span>For our Pap protocol, fast enough for same-day results. Run times for other protocols depend on the protocol.</span></div>
       <div class="spec"><strong>Open reagents, standard beakers</strong><span>No proprietary cartridges. Reagents can be sourced locally and baths lift out for cleaning.</span></div>
-      <div class="spec"><strong>Nine baths and a drying station</strong><span>The full Pap sequence, including rinses and fan drying, in one compact ring.</span></div>
-      <div class="spec"><strong>Touchscreen and browser control</strong><span>Pick a stored protocol on the device, or edit protocols from a web browser.</span></div>
+      <div class="spec"><strong>Nine baths and a drying station</strong><span>Enough for a full Pap sequence, including rinses and fan drying, in one compact ring.</span></div>
+      <div class="spec"><strong>Touchscreen and browser control</strong><span>Pick a stored protocol on the device, or create and edit protocols from a web browser.</span></div>
       <div class="spec"><strong>Works offline</strong><span>No continuous internet connection needed to run.</span></div>
     </div>
   </div>
@@ -122,29 +122,27 @@
   <div class="wrap split reverse">
     <div>
       <h2 id="ai-title">Faster review, with AI in the loop</h2>
-      <p class="lede mt-1">With EPFL's LTS5 lab, we are researching an algorithm that highlights suspicious cells on a digitised slide, so experts know where to look first.</p>
-      <p>It is part of our telecytology platform as a research tool. Once validated, it will be used in every deployment to save reviewers time, at no extra cost to our partners.</p>
+      <p class="lede mt-1">With EPFL's LTS5 lab, we are researching an algorithm that highlights suspicious cells on a digitised slide, so pathologists know where to look first.</p>
+      <p>It is part of our <a class="text-link" href="telecytology.html">telecytology platform</a> as a research tool. Once validated, it will be used in every deployment to save reviewers time, at no extra cost to our partners.</p>
     </div>
     <div>
-      <div class="photo"><img src="assets/img/microscope-review.jpg" alt="A specialist reviewing stained slides at a microscope connected to a screen." width="1400" height="1266" loading="lazy"></div>
+      <div class="photo"><img src="assets/img/microscope-review.jpg" alt="A pathologist reviewing stained slides at a microscope connected to a screen." width="1400" height="1266" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <section class="section-tight" style="background:#fff">
   <div class="wrap">
-    <div class="note">
-      <h3>Available on its own</h3>
-      <p style="margin:0">GyroStainer is part of every Wave and Loop setup, and cytology laboratories can also acquire it as a standalone device. <a class="text-link" href="get-involved.html#ngo">Get in touch</a> to talk about your laboratory's needs.</p>
-    </div>
+    <h2 style="font-size:var(--step-2)">Available on its own</h2>
+    <p class="mt-1">GyroStainer is part of every Wave and Loop setup, and cytology laboratories can also acquire it as a standalone device. <a class="text-link" href="get-involved.html?topic=lab">Get in touch</a> to talk about your laboratory's needs.</p>
   </div>
 </section>
 <section class="cta-band section-tight">
   <div class="wrap">
     <h2>Let's bring screening and treatment closer to the women who need it.</h2>
     <div class="btn-row">
-      <a class="btn" href="get-involved.html#ngo">Plan a programme with us</a>
-      <a class="btn btn-ghost" href="get-involved.html#invest">Support CareVix</a>
+      <a class="btn" href="get-involved.html?topic=lab">Ask about GyroStainer</a>
+      <a class="btn btn-ghost" href="get-involved.html?topic=funding">Support CareVix</a>
     </div>
   </div>
 </section>
@@ -160,9 +158,11 @@
         <h3>Explore</h3>
         <ul>
           <li><a href="solutions.html">Wave and Loop</a></li>
+          <li><a href="technology.html">Our technology</a></li>
           <li><a href="gyrostainer.html">GyroStainer</a></li>
+          <li><a href="telecytology.html">Telecytology platform</a></li>
           <li><a href="about.html">About us</a></li>
-          <li><a href="get-involved.html">Get involved</a></li>
+          <li><a href="get-involved.html">Get in touch</a></li>
         </ul>
       </div>
       <div>

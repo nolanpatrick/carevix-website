@@ -206,7 +206,7 @@
     });
     const caption = pathSvg.querySelector("#pw-caption");
     const steps = document.querySelectorAll(".pathway-step");
-    const captions = ["Sample collected", "HPV positive", "Stained on site", "Reviewed remotely", "Treated on site", "Referred to hospital"];
+    const captions = ["Self-sample collected", "HPV positive", "Pap-stained on site", "Read remotely", "Treated on site", "Referred to hospital"];
     function setStep(n) {
       pathSvg.setAttribute("data-step", n);
       if (caption) caption.textContent = captions[n - 1] || "";
@@ -232,39 +232,25 @@
   }, { threshold: 0.2 });
   document.querySelectorAll(".timeline").forEach((t) => tlObserver.observe(t));
 
-  /* ---------- Wave / Loop switcher ---------- */
-  const panel = document.querySelector(".solution-panel");
-  const switchBtns = document.querySelectorAll(".switch button");
-  function showSolution(name, fromUser) {
-    if (!panel) return;
-    panel.dataset.active = name;
-    switchBtns.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.solution === name)));
-    panel.querySelectorAll("[data-for]").forEach((el) => (el.hidden = el.dataset.for !== name));
-    panel.querySelectorAll(`[data-for="${name}"] .timeline`).forEach(playTimeline);
-    if (fromUser) history.replaceState(null, "", `#${name}`);
-  }
-  switchBtns.forEach((b) => b.addEventListener("click", () => showSolution(b.dataset.solution, true)));
-  if (panel) showSolution(location.hash === "#loop" ? "loop" : "wave", false);
-
-  /* ---------- GyroStainer: run the protocol ---------- */
+  /* ---------- GyroStainer: the protocol on a loop ---------- */
   const sim = document.getElementById("sim-svg");
   if (sim) {
     const NS = "http://www.w3.org/2000/svg";
-    // Stations as built: S1 fan drying, then nine liquid baths. S1→S2 gap is 22.2°, the rest evenly spaced.
+    // Ten evenly spaced stations, numbered counterclockwise from the top, as on the device.
     const stations = {
       1: { name: "Fan drying", fill: "#FFFFFF", dry: true },
       2: { name: "Distilled water", fill: "#D9EEF6" },
-      3: { name: "Haematoxylin", fill: "#43307F" },
-      4: { name: "Bluing reagent", fill: "#5C7FC4" },
-      5: { name: "Xylol 2", fill: "#F6F3DF" },
-      6: { name: "Ethanol 95% (1)", fill: "#EEF0F8" },
-      7: { name: "OG-6 / EA-50", fill: "url(#ea)" },
-      8: { name: "Ethanol 95% (2)", fill: "#EEF0F8" },
-      9: { name: "Ethanol 95% (3)", fill: "#EEF0F8" },
-      10: { name: "Xylol 1", fill: "#F6F3DF" }
+      3: { name: "Haematoxylin", fill: "#43307F", dark: true },
+      4: { name: "Bluing reagent", fill: "#5C7FC4", dark: true },
+      5: { name: "Xylene 2", fill: "#F6F3DF" },
+      6: { name: "Ethanol 95%", fill: "#EEF0F8" },
+      7: { name: "OG-6 / EA-50", fill: "url(#ea)", swatch: "linear-gradient(90deg,#E55F9A,#22A4A6 55%,#E55F9A)", dark: true },
+      8: { name: "Ethanol 95%", fill: "#EEF0F8" },
+      9: { name: "Ethanol 95%", fill: "#EEF0F8" },
+      10: { name: "Xylene 1", fill: "#F6F3DF" }
     };
-    const angleOf = (s) => (s === 1 ? 0 : 22.2 + (s - 2) * ((360 - 22.2) / 9));
-    const cx = 200, cy = 200, R = 138;
+    const angleOf = (s) => -(s - 1) * 36;
+    const cx = 200, cy = 200, R = 140;
     const stLayer = sim.querySelector("#stations");
     Object.entries(stations).forEach(([id, st]) => {
       const a = (angleOf(Number(id)) - 90) * Math.PI / 180;
@@ -272,56 +258,63 @@
       const grp = document.createElementNS(NS, "g");
       grp.setAttribute("id", `st-${id}`); grp.setAttribute("class", "station");
       const c = document.createElementNS(NS, "circle");
-      c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", st.dry ? 17 : 25);
+      c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 27);
       c.setAttribute("fill", st.fill); c.setAttribute("stroke", "#C6CAE0"); c.setAttribute("stroke-width", "2");
       const ring = document.createElementNS(NS, "circle");
-      ring.setAttribute("cx", x); ring.setAttribute("cy", y); ring.setAttribute("r", st.dry ? 17 : 25);
+      ring.setAttribute("cx", x); ring.setAttribute("cy", y); ring.setAttribute("r", 27);
       ring.setAttribute("class", "ripple"); ring.setAttribute("fill", "none");
-      const label = document.createElementNS(NS, "text");
-      const lx = cx + (R + 44) * Math.cos(a), ly = cy + (R + 44) * Math.sin(a);
-      label.setAttribute("x", lx); label.setAttribute("y", ly + 4); label.setAttribute("text-anchor", "middle");
-      label.setAttribute("class", "st-label"); label.textContent = `S${id}`;
-      grp.append(c, ring, label);
+      grp.append(c, ring);
       if (st.dry) {
         const fan = document.createElementNS(NS, "path");
-        fan.setAttribute("d", `M${x} ${y - 9} q6 4 0 9 q-6 -5 0 -9 M${x - 9} ${y + 5} q4 -6 9 -5 q-4 6 -9 5 M${x + 9} ${y + 5} q-9 1 -9 -5 q7 0 9 5`);
-        fan.setAttribute("fill", C.ink); fan.setAttribute("opacity", ".7");
+        fan.setAttribute("d", `M${x} ${y - 10} q7 5 0 10 q-7 -5 0 -10 M${x - 10} ${y + 6} q4 -7 10 -6 q-4 7 -10 6 M${x + 10} ${y + 6} q-10 1 -10 -6 q8 0 10 6`);
+        fan.setAttribute("fill", C.ink); fan.setAttribute("opacity", ".55");
         grp.append(fan);
+      } else {
+        const num = document.createElementNS(NS, "text");
+        num.setAttribute("x", x); num.setAttribute("y", y + 5); num.setAttribute("text-anchor", "middle");
+        num.setAttribute("class", "st-num"); num.setAttribute("fill", st.dark ? "#fff" : C.ink);
+        num.textContent = id;
+        grp.append(num);
       }
       stLayer.append(grp);
     });
 
     const arm = sim.querySelector("#arm");
     const holder = sim.querySelector("#holder");
-    const nameEl = document.getElementById("sim-name");
-    const detailEl = document.getElementById("sim-detail");
+    const statusEl = document.getElementById("sim-status");
     const bar = document.getElementById("sim-bar");
     const smear = document.getElementById("sim-smear");
-    const runBtn = document.getElementById("sim-run");
-    const resetBtn = document.getElementById("sim-reset");
+    const list = document.getElementById("sim-steps");
+    const pauseBtn = document.getElementById("sim-pause");
 
     const protocol = [
-      { s: 2, d: "Hydrates the cells before staining." },
-      { s: 3, d: "Stains the nuclei, where abnormal cells show their changes.", smear: "#6B5AA8" },
-      { s: 2, d: "Rinses off the excess stain." },
-      { s: 4, d: "Turns the nuclei a crisp blue-violet.", smear: "#5867B3" },
-      { s: 2, d: "Rinses again." },
-      { s: 6, d: "Prepares the cells for the cytoplasm stain." },
-      { s: 7, d: "Colours the cytoplasm pink or teal, depending on the type of cell.", smear: "linear-gradient(90deg,#E55F9A,#22A4A6 55%,#E55F9A)" },
-      { s: 8, d: "Draws water out of the cells." },
-      { s: 9, d: "Final dehydration." },
-      { s: 1, d: "Fan-dries the slides." },
-      { s: 10, d: "Clears the slides so they are transparent under the microscope." },
-      { s: 5, d: "Final clearing. The holder waits here until the operator takes the slides out." }
+      { s: 2, d: "Hydrates the cells" },
+      { s: 3, d: "Stains the nuclei", smear: "#6B5AA8" },
+      { s: 2, d: "Rinses off excess stain" },
+      { s: 4, d: "Turns the nuclei blue-violet", smear: "#5867B3" },
+      { s: 2, d: "Rinses again" },
+      { s: 6, d: "Prepares the cytoplasm" },
+      { s: 7, d: "Stains the cytoplasm pink or teal", smear: "linear-gradient(90deg,#E55F9A,#22A4A6 55%,#E55F9A)" },
+      { s: 8, d: "Dehydrates" },
+      { s: 9, d: "Final dehydration" },
+      { s: 1, d: "Dries the slides" },
+      { s: 10, d: "Clears the slides" },
+      { s: 5, d: "Final clearing" }
     ];
+    const items = protocol.map((p) => {
+      const st = stations[p.s];
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="st-badge${st.dark ? " dark" : ""}" style="background:${st.swatch || st.fill}">${p.s}</span><span><strong>${st.name}</strong><small>${p.d}</small></span>`;
+      list.append(li);
+      return li;
+    });
 
-    let angle = 0, running = false, timer = null, idx = -1;
-    const stepMs = reduceMotion ? 900 : 1500;
+    let angle = 0, idx = -1, timer = null, paused = false, visible = false;
+    const stepMs = 1600;
+    const restMs = 3500;
 
     function moveTo(station) {
-      let target = angleOf(station);
-      // rotate forward or backward, whichever is shorter
-      let delta = ((target - (angle % 360)) + 540) % 360 - 180;
+      const delta = ((angleOf(station) - (angle % 360)) + 540) % 360 - 180;
       angle += delta;
       arm.style.transform = `rotate(${angle}deg)`;
     }
@@ -329,44 +322,53 @@
       holder.classList.remove("dip"); void holder.getBBox(); holder.classList.add("dip");
       const rip = sim.querySelector(`#st-${station} .ripple`);
       if (rip) { rip.classList.remove("go"); void rip.getBBox(); rip.classList.add("go"); }
-      sim.querySelectorAll(".station").forEach((g) => g.classList.toggle("on", g.id === `st-${station}`));
     }
-    function show(i) {
-      const p = protocol[i];
-      nameEl.textContent = `S${p.s}  ${stations[p.s].name}`;
-      detailEl.textContent = p.d;
-      bar.style.width = `${((i + 1) / protocol.length) * 100}%`;
-      moveTo(p.s);
-      setTimeout(() => dip(p.s), reduceMotion ? 0 : 450);
-      if (p.smear) smear.style.background = p.smear;
-    }
-    function next() {
-      idx++;
-      if (idx >= protocol.length) {
-        running = false; runBtn.disabled = false; runBtn.textContent = "Run it again";
-        nameEl.textContent = "Done. Six slides, ready for review.";
-        detailEl.textContent = "The real protocol takes 21 min 30 s. The slides are then coverslipped and examined under the microscope or scanned for remote review.";
-        return;
-      }
-      show(idx);
-      timer = setTimeout(next, stepMs);
+    function highlight(i) {
+      items.forEach((li, j) => { li.classList.toggle("on", j === i); li.classList.toggle("done", j < i); });
+      const s = i >= 0 && i < protocol.length ? protocol[i].s : null;
+      sim.querySelectorAll(".station").forEach((g) => g.classList.toggle("on", g.id === `st-${s}`));
     }
     function reset() {
-      clearTimeout(timer); running = false; idx = -1;
-      runBtn.disabled = false; runBtn.textContent = "Run the protocol";
-      nameEl.textContent = "Six slides loaded.";
-      detailEl.textContent = "Press run to send them through the twelve steps of a Pap stain.";
+      idx = -1; angle = 0; arm.style.transform = "rotate(0deg)";
       bar.style.width = "0"; smear.style.background = "";
-      angle = 0; arm.style.transform = "rotate(0deg)";
-      sim.querySelectorAll(".station").forEach((g) => g.classList.remove("on"));
+      statusEl.textContent = "Four slides loaded";
+      highlight(-1);
     }
-    runBtn.addEventListener("click", () => {
-      if (running) return;
-      if (idx >= protocol.length - 1) reset();
-      running = true; runBtn.disabled = true; runBtn.textContent = "Running…";
-      next();
+    function schedule(ms) { clearTimeout(timer); timer = setTimeout(tick, ms); }
+    function tick() {
+      timer = null;
+      if (paused || !visible) return;
+      idx++;
+      if (idx >= protocol.length) {
+        idx = protocol.length;
+        statusEl.textContent = "Done: four slides ready for review";
+        highlight(protocol.length);
+        timer = setTimeout(() => { timer = null; if (paused || !visible) return; reset(); schedule(900); }, restMs);
+        return;
+      }
+      const p = protocol[idx];
+      statusEl.textContent = `Step ${idx + 1} of ${protocol.length}`;
+      bar.style.width = `${((idx + 1) / protocol.length) * 100}%`;
+      highlight(idx);
+      moveTo(p.s);
+      setTimeout(() => dip(p.s), reduceMotion ? 0 : 500);
+      if (p.smear) smear.style.background = p.smear;
+      schedule(stepMs);
+    }
+
+    pauseBtn.addEventListener("click", () => {
+      paused = !paused;
+      pauseBtn.setAttribute("aria-pressed", String(paused));
+      pauseBtn.textContent = paused ? "Play" : "Pause";
+      if (!paused) { if (idx >= protocol.length) reset(); schedule(200); }
     });
-    resetBtn.addEventListener("click", reset);
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !paused && !timer) {
+        if (idx >= protocol.length) reset();
+        schedule(600);
+      }
+    }, { threshold: 0.3 }).observe(sim);
     reset();
   }
 
@@ -399,21 +401,83 @@
     });
   });
 
-  /* ---------- get involved: tabs + form ---------- */
-  const tabBtns = document.querySelectorAll(".tabs [role='tab']");
-  const typeSelect = document.getElementById("f-type");
-  function selectTab(id, fromUser) {
-    tabBtns.forEach((b) => {
-      const on = b.getAttribute("aria-controls") === id;
-      b.setAttribute("aria-selected", String(on));
-      b.tabIndex = on ? 0 : -1;
-      document.getElementById(b.getAttribute("aria-controls")).hidden = !on;
+  /* ---------- telecytology: simulated review ---------- */
+  const platform = document.getElementById("platform");
+  if (platform) {
+    const cases = [
+      { code: "CVX-7F3A", age: 41, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/cells-1.jpg" },
+      { code: "CVX-2C91", age: 36, hpv: "Positive (GeneXpert)", site: "Loop, fixed clinic", img: "assets/img/cells-2.jpg" },
+      { code: "CVX-B804", age: 47, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/cells-hsil.jpg" }
+    ];
+    const nextSteps = {
+      "NILM": "No lesion seen. No treatment is needed, and the woman is told when to come back for screening.",
+      "ASC-US": "Low-grade changes. The site follows up as set in the programme protocol.",
+      "LSIL": "Low-grade lesion. The site follows up as set in the programme protocol.",
+      "ASC-H": "A high-grade lesion can't be excluded. The woman is assessed for thermal ablation.",
+      "HSIL": "High-grade lesion. The woman is assessed and offered thermal ablation on site.",
+      "Suspicious for cancer": "The woman is referred to a hospital for specialised care."
+    };
+    const queue = platform.querySelectorAll(".pf-queue button");
+    const img = platform.querySelector(".scope img");
+    const fields = {};
+    platform.querySelectorAll("[data-f]").forEach((el) => (fields[el.dataset.f] = el));
+    const report = platform.querySelector(".pf-report form");
+    const sent = platform.querySelector(".pf-sent");
+    const results = new Map();
+    let current = 0;
+    function showSent(result) {
+      sent.hidden = !result;
+      if (!result) return;
+      sent.querySelector("[data-s='code']").textContent = cases[current].code;
+      sent.querySelector("[data-s='result']").textContent = result;
+      sent.querySelector("[data-s='next']").textContent = nextSteps[result];
+    }
+    function open(i) {
+      current = i;
+      const c = cases[i];
+      queue.forEach((b, j) => b.setAttribute("aria-current", String(j === i)));
+      img.src = c.img;
+      Object.keys(fields).forEach((k) => (fields[k].textContent = c[k]));
+      report.reset();
+      report.querySelector(".pf-status").textContent = "";
+      const prev = results.get(i);
+      if (prev) report.querySelector(`input[value="${prev}"]`).checked = true;
+      showSent(prev);
+    }
+    queue.forEach((b, i) => b.addEventListener("click", () => open(i)));
+    report.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const choice = report.querySelector("input[name='dx']:checked");
+      const status = report.querySelector(".pf-status");
+      if (!choice) { status.textContent = "Choose a result first."; return; }
+      status.textContent = "";
+      results.set(current, choice.value);
+      queue[current].classList.add("reviewed");
+      showSent(choice.value);
     });
-    if (typeSelect) typeSelect.value = id === "invest" ? "Investor or funder" : "NGO or health programme";
-    if (fromUser) history.replaceState(null, "", `#${id}`);
+    open(0);
   }
-  tabBtns.forEach((b) => b.addEventListener("click", () => selectTab(b.getAttribute("aria-controls"), true)));
-  if (tabBtns.length) selectTab(location.hash === "#invest" ? "invest" : "ngo", false);
+
+  /* ---------- contact: topic picker + form ---------- */
+  const typeSelect = document.getElementById("f-type");
+  const msg = document.getElementById("f-msg");
+  if (typeSelect) {
+    const prompts = {};
+    typeSelect.querySelectorAll("option").forEach((o) => (prompts[o.value] = o.dataset.prompt || ""));
+    const setTopic = (topic) => {
+      if (!(topic in prompts)) return;
+      typeSelect.value = topic;
+      msg.placeholder = prompts[topic];
+      document.querySelectorAll(".topic-card").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.topic === topic)));
+    };
+    typeSelect.addEventListener("change", () => setTopic(typeSelect.value));
+    document.querySelectorAll(".topic-card").forEach((c) => c.addEventListener("click", () => {
+      setTopic(c.dataset.topic);
+      // On wide screens the form sits beside the cards, so there is nothing to scroll to.
+      msg.focus({ preventScroll: window.innerWidth > 860 });
+    }));
+    setTopic(new URLSearchParams(location.search).get("topic") || typeSelect.value);
+  }
 
   const form = document.getElementById("contact-form");
   if (form) {
@@ -425,7 +489,8 @@
         status.textContent = "Add your name, email and a message so we can reply.";
         return;
       }
-      const subject = `[${f.get("type")}] Message from ${f.get("name")}${f.get("org") ? " – " + f.get("org") : ""}`;
+      const label = typeSelect.options[typeSelect.selectedIndex].text;
+      const subject = `[${label}] Message from ${f.get("name")}${f.get("org") ? " – " + f.get("org") : ""}`;
       const body = `${f.get("message")}\n\n—\n${f.get("name")}\n${f.get("org") || ""}\n${f.get("email")}`;
       window.location.href = `mailto:info@carevix.ch?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       status.textContent = "Your email app should now open with the message ready to send. If nothing happens, write to info@carevix.ch.";
