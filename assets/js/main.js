@@ -405,9 +405,9 @@
   const platform = document.getElementById("platform");
   if (platform) {
     const cases = [
-      { code: "CVX-7F3A", age: 41, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/cells-1.jpg" },
-      { code: "CVX-2C91", age: 36, hpv: "Positive (GeneXpert)", site: "Loop, fixed clinic", img: "assets/img/cells-2.jpg" },
-      { code: "CVX-B804", age: 47, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/cells-hsil.jpg" }
+      { code: "CVX-7F3A", age: 41, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/pap-field-1.jpg" },
+      { code: "CVX-2C91", age: 36, hpv: "Positive (GeneXpert)", site: "Loop, fixed clinic", img: "assets/img/pap-field-2.jpg" },
+      { code: "CVX-B804", age: 47, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/pap-field-hsil.jpg" }
     ];
     const nextSteps = {
       "NILM": "No lesion seen. No treatment is needed, and the woman is told when to come back for screening.",
