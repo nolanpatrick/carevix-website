@@ -44,91 +44,69 @@
 
 <section class="section" style="padding-top:0" aria-label="Wave and Loop compared">
   <div class="wrap">
-    <div class="compare">
-      <div class="compare-corner" aria-hidden="true"></div>
-      <div class="compare-head wave">
-        <img src="assets/img/wave-logo.png" alt="CareVix Wave" width="600" height="230">
-        <h2>Wave: high volume, two days</h2>
-        <p>Built for sites that many women can reach, like cities or large towns. Samples are tested in batches, so triage and treatment follow the next day.</p>
-      </div>
-      <div class="compare-head loop">
-        <img src="assets/img/loop-logo.png" alt="CareVix Loop" width="600" height="229">
-        <h2>Loop: lower volume, same-day care</h2>
-        <p>Built for smaller or remote communities. Each sample is tested individually, so a woman can be screened and treated in a single visit.</p>
-      </div>
-
-      <div class="compare-label">Women screened per day</div>
-      <div class="compare-cell fact" data-solution="Wave"><span class="value">Up to 90</span></div>
-      <div class="compare-cell fact" data-solution="Loop"><span class="value">Up to 20</span></div>
-
-      <div class="compare-label">Screening to treatment</div>
-      <div class="compare-cell fact" data-solution="Wave"><span class="value">Next day</span></div>
-      <div class="compare-cell fact" data-solution="Loop"><span class="value">Same day</span></div>
-
-      <div class="compare-label">HPV test</div>
-      <div class="compare-cell fact" data-solution="Wave"><span class="value">QIAGEN careHPV</span><span class="label">Batches of up to 90 samples</span></div>
-      <div class="compare-cell fact" data-solution="Loop"><span class="value">Cepheid GeneXpert</span><span class="label">Each sample in its own cartridge</span></div>
-
-      <div class="compare-label">Team</div>
-      <div class="compare-cell fact" data-solution="Wave"><span class="value">4 people</span><span class="label">Nurses or lab technicians</span></div>
-      <div class="compare-cell fact" data-solution="Loop"><span class="value">2 people</span><span class="label">Nurses or lab technicians</span></div>
-
-      <div class="compare-label">As a mobile unit</div>
-      <div class="compare-cell fact" data-solution="Wave"><span class="value">2 vans</span></div>
-      <div class="compare-cell fact" data-solution="Loop"><span class="value">1 van</span></div>
-
-      <h2 class="compare-title">How the days work</h2>
-
-      <div class="compare-label phase screen">Screen</div>
-      <div class="compare-cell" data-solution="Wave">
-        <p class="day-tag">Day 1</p>
-        <ol class="timeline">
-          <li><strong>Set up</strong><span>The team prepares the vans or clinic room and the testing equipment.</span></li>
-          <li><strong>Registration</strong><span>Women are registered and receive a labelled sample kit. A nurse shows them how to take the swab.</span></li>
-          <li class="screen"><strong>HPV self-test</strong><span>Each woman takes a vaginal swab herself, in private. The samples are tested together on the careHPV system, up to 90 in one run.</span></li>
-          <li><strong>HPV results</strong><span>HPV-negative women are informed and can go home. HPV-positive women are invited back the next day.</span></li>
-        </ol>
-      </div>
-      <div class="compare-cell" data-solution="Loop">
-        <p class="day-tag">Same day</p>
-        <ol class="timeline">
-          <li><strong>Set up</strong><span>The team prepares the van or clinic room and the testing equipment.</span></li>
-          <li><strong>Registration</strong><span>Women are registered and receive a labelled sample kit. A nurse shows them how to take the swab.</span></li>
-          <li class="screen"><strong>HPV self-test</strong><span>Each woman takes a vaginal swab herself, in private. Each sample is tested individually on the GeneXpert, with a result in about an hour.</span></li>
-          <li><strong>HPV results</strong><span>HPV-negative women are informed and can go home. HPV-positive women stay for triage.</span></li>
-        </ol>
+    <p class="phase-legend"><span class="screen">Screen</span><span class="triage">Triage</span><span class="treat">Treat</span></p>
+    <div class="sol-compare">
+      <div class="sol wave">
+        <div class="sol-head">
+          <img src="assets/img/wave-logo.png" alt="CareVix Wave" width="600" height="230">
+          <h2>Wave: high volume, two days</h2>
+          <p class="lede">Built for sites that many women can reach, like cities or large towns. Samples are tested in batches, so triage and treatment follow the next day.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><div class="value">Up to 90</div><div class="label">women screened per day</div></div>
+          <div class="fact"><div class="value">2 days</div><div class="label">from screening to treatment</div></div>
+          <div class="fact"><div class="value">Batch HPV testing</div><div class="label">on the QIAGEN careHPV system</div></div>
+        </div>
+        <div class="day">
+          <h2>A day with Wave</h2>
+          <div class="day-col"><h3>Day one: screen</h3>
+          <ol class="timeline">
+            <li><strong>Set up</strong><span>The team prepares the unit or clinic room and the testing equipment.</span></li>
+            <li><strong>Welcome and counselling</strong><span>Women are registered and the process is explained in a private conversation.</span></li>
+            <li class="screen"><strong>HPV self-sampling</strong><span>Each woman collects a vaginal sample herself, in private, throughout the day.</span></li>
+            <li class="screen"><strong>HPV testing in batches</strong><span>Samples are tested together on a batch HPV platform, designed for high volumes.</span></li>
+          </ol>
+          </div>
+          <div class="day-col"><h3>Day two: triage and treat</h3>
+          <ol class="timeline">
+            <li><strong>Results</strong><span>HPV-positive women come back to receive their results in person.</span></li>
+            <li class="triage"><strong>Cervical sample</strong><span>A nurse collects a cervical sample from each HPV-positive woman.</span></li>
+            <li class="triage"><strong>Staining on site</strong><span>Slides are Pap-stained on site with GyroStainer.</span></li>
+            <li class="triage"><strong>Remote review</strong><span>Slides are digitised and read by pathologists on our telecytology platform.</span></li>
+            <li class="treat"><strong>Treatment</strong><span>Women with CIN2 or CIN3 lesions are treated on site with thermal ablation.</span></li>
+            <li><strong>Referral</strong><span>Suspected cancers, and lesions that can't be treated with thermal ablation, are referred to a hospital.</span></li>
+          </ol>
+          </div>
+        </div>
       </div>
 
-      <div class="compare-label phase triage">Triage</div>
-      <div class="compare-cell" data-solution="Wave">
-        <p class="day-tag">Day 2</p>
-        <ol class="timeline">
-          <li class="triage"><strong>Cytology triage</strong><span>HPV-positive women return in the morning. A nurse collects a cervical sample, which is Pap-stained on site with GyroStainer.</span></li>
-          <li><strong>Remote review</strong><span>Slides are digitised and read by a pathologist on our telecytology platform. The first results arrive late in the morning.</span></li>
-        </ol>
-      </div>
-      <div class="compare-cell" data-solution="Loop">
-        <p class="day-tag">Same day</p>
-        <ol class="timeline">
-          <li class="triage"><strong>Cytology triage</strong><span>A nurse collects a cervical sample from each HPV-positive woman, which is Pap-stained on site with GyroStainer.</span></li>
-          <li><strong>Remote review</strong><span>Slides are digitised and read by a pathologist on our telecytology platform, while the woman waits.</span></li>
-        </ol>
-      </div>
-
-      <div class="compare-label phase treat">Treat</div>
-      <div class="compare-cell" data-solution="Wave">
-        <p class="day-tag">Day 2</p>
-        <ol class="timeline">
-          <li class="treat"><strong>Thermal ablation</strong><span>Women with CIN2 or CIN3 lesions are treated as soon as they receive their result.</span></li>
-          <li><strong>Referral</strong><span>Suspected cancers, and lesions that can't be treated with thermal ablation, are referred to a hospital.</span></li>
-        </ol>
-      </div>
-      <div class="compare-cell" data-solution="Loop">
-        <p class="day-tag">Same day</p>
-        <ol class="timeline">
-          <li class="treat"><strong>Thermal ablation</strong><span>Women with CIN2 or CIN3 lesions are treated before they go home.</span></li>
-          <li><strong>Referral</strong><span>Suspected cancers, and lesions that can't be treated with thermal ablation, are referred to a hospital.</span></li>
-        </ol>
+      <div class="sol loop">
+        <div class="sol-head">
+          <img src="assets/img/loop-logo.png" alt="CareVix Loop" width="600" height="229">
+          <h2>Loop: lower volume, same-day care</h2>
+          <p class="lede">Built for smaller or remote communities. Each sample is tested individually, so a woman can be screened and treated in a single visit.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><div class="value">Up to 20</div><div class="label">women screened per day</div></div>
+          <div class="fact"><div class="value">Same day</div><div class="label">from screening to treatment</div></div>
+          <div class="fact"><div class="value">Rapid HPV testing</div><div class="label">on the GeneXpert system</div></div>
+        </div>
+        <div class="day">
+          <h2>A day with Loop</h2>
+          <div class="day-col"><h3>One visit: screen, triage and treat</h3>
+          <ol class="timeline">
+            <li><strong>Set up</strong><span>The team prepares the unit or clinic room and the testing equipment.</span></li>
+            <li><strong>Welcome and counselling</strong><span>Women are registered and the process is explained in a private conversation.</span></li>
+            <li class="screen"><strong>HPV self-sampling</strong><span>Each woman collects a vaginal sample herself, in private.</span></li>
+            <li class="screen"><strong>Rapid HPV test</strong><span>Each sample is tested individually on a rapid cartridge-based platform.</span></li>
+            <li class="triage"><strong>Cervical sample</strong><span>A nurse collects a cervical sample from each HPV-positive woman.</span></li>
+            <li class="triage"><strong>Staining on site</strong><span>Slides are Pap-stained on site with GyroStainer.</span></li>
+            <li class="triage"><strong>Remote review</strong><span>Slides are digitised and read by pathologists the same day.</span></li>
+            <li class="treat"><strong>Treatment</strong><span>Women with CIN2 or CIN3 lesions are treated with thermal ablation before they go home.</span></li>
+            <li><strong>Referral</strong><span>Suspected cancers, and lesions that can't be treated with thermal ablation, are referred to a hospital.</span></li>
+          </ol>
+          </div>
+        </div>
       </div>
     </div>
   </div>
