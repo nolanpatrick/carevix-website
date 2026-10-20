@@ -557,19 +557,47 @@
 
   const form = document.getElementById("contact-form");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    // Web3Forms delivers submissions to the inbox registered with this key. The key is public by design.
+    const WEB3FORMS_KEY = "8ff1f472-d86d-4fe5-aa73-bf395d681991";
+    const button = form.querySelector("button[type='submit']");
+    const status = document.getElementById("form-status");
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const f = new FormData(form);
-      const status = document.getElementById("form-status");
       if (!f.get("name") || !f.get("email") || !f.get("message")) {
         status.textContent = "Add your name, email and a message so we can reply.";
         return;
       }
+      if (f.get("botcheck")) return;
       const label = typeSelect.options[typeSelect.selectedIndex].text;
-      const subject = `[${label}] Message from ${f.get("name")}${f.get("org") ? " – " + f.get("org") : ""}`;
-      const body = `${f.get("message")}\n\n—\n${f.get("name")}\n${f.get("org") || ""}\n${f.get("email")}`;
-      window.location.href = `mailto:info@carevix.ch?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      status.textContent = "Your email app should now open with the message ready to send. If nothing happens, write to info@carevix.ch.";
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: `[${label}] Message from ${f.get("name")}${f.get("org") ? " – " + f.get("org") : ""}`,
+        from_name: "CareVix website",
+        name: f.get("name"),
+        email: f.get("email"),
+        organisation: f.get("org") || "",
+        topic: label,
+        message: f.get("message")
+      };
+      button.disabled = true;
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.message || "Request failed");
+        form.reset();
+        if (typeSelect) typeSelect.dispatchEvent(new Event("change"));
+        status.textContent = "Thank you, your message has been sent. We'll get back to you soon.";
+      } catch (err) {
+        status.textContent = "Sorry, the message couldn't be sent. Please try again in a moment.";
+      } finally {
+        button.disabled = false;
+      }
     });
   }
 })();
