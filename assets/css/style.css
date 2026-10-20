@@ -524,7 +524,6 @@ textarea { min-height: 150px; resize: vertical; }
 #df-svg .arrow { stroke: #9AA0C4; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 #df-svg .lane-label { font-size: 13px; font-weight: 600; fill: var(--ink-soft); }
 #df-svg .node-title { font: 800 20px var(--display); fill: var(--ink); }
-#df-svg .node-sub { font-size: 14px; fill: var(--ink-soft); }
 @media (prefers-reduced-motion: reduce) { #df-svg circle[opacity] { display: none; } }
 
 /* ---------- AI animation ---------- */
