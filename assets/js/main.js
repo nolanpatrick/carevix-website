@@ -396,69 +396,188 @@
       const scope = document.getElementById(b.dataset.target);
       const img = scope.querySelector("img");
       img.src = b.dataset.src; img.alt = b.dataset.alt;
-      document.getElementById(`${b.dataset.target}-caption`).textContent = b.dataset.caption;
+      const cap = document.getElementById(`${b.dataset.target}-caption`);
+      if (cap) cap.textContent = b.dataset.caption || "";
       b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
     });
   });
 
-  /* ---------- telecytology: simulated review ---------- */
+  /* ---------- telecytology portal: example review ---------- */
   const platform = document.getElementById("platform");
   if (platform) {
     const cases = [
-      { code: "CVX-7F3A", age: 41, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/pap-field-1.jpg" },
-      { code: "CVX-2C91", age: 36, hpv: "Positive (GeneXpert)", site: "Loop, fixed clinic", img: "assets/img/pap-field-2.jpg" },
-      { code: "CVX-B804", age: 47, hpv: "Positive (careHPV)", site: "Wave, mobile unit", img: "assets/img/pap-field-hsil.jpg" }
+      { code: "CVX-7F3A", age: 41, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-1.jpg" },
+      { code: "CVX-2C91", age: 36, hpv: "Positive", hiv: "Positive", history: "Screened in 2021, normal", img: "assets/img/pap-field-2.jpg" },
+      { code: "CVX-B804", age: 47, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-hsil.jpg" }
     ];
-    const nextSteps = {
-      "NILM": "No lesion seen. No treatment is needed, and the woman is told when to come back for screening.",
-      "ASC-US": "Low-grade changes. The site follows up as set in the programme protocol.",
-      "LSIL": "Low-grade lesion. The site follows up as set in the programme protocol.",
-      "ASC-H": "A high-grade lesion can't be excluded. The woman is assessed for thermal ablation.",
-      "HSIL": "High-grade lesion. The woman is assessed and offered thermal ablation on site.",
-      "Suspicious for cancer": "The woman is referred to a hospital for specialised care."
+    const reports = {
+      "NILM": "Negative for intraepithelial lesion or malignancy. No treatment needed. Rescreen as set in the programme guidelines.",
+      "ASC-US": "Atypical squamous cells of undetermined significance. No treatment today. Follow up as set in the programme protocol.",
+      "LSIL": "Low-grade squamous intraepithelial lesion. No immediate treatment needed. Follow up as set in the programme protocol.",
+      "ASC-H": "Atypical squamous cells, a high-grade lesion cannot be excluded. Assess the patient for thermal ablation on site.",
+      "HSIL": "High-grade squamous intraepithelial lesion. The patient needs treatment: assess and offer thermal ablation on site today.",
+      "Suspicious for cancer": "Features suspicious for invasive cancer. Do not treat on site. Refer the patient to hospital urgently."
     };
     const queue = platform.querySelectorAll(".pf-queue button");
     const img = platform.querySelector(".scope img");
     const fields = {};
     platform.querySelectorAll("[data-f]").forEach((el) => (fields[el.dataset.f] = el));
-    const report = platform.querySelector(".pf-report form");
-    const sent = platform.querySelector(".pf-sent");
-    const results = new Map();
+    const form = platform.querySelector(".pf-report form");
+    const notes = form.querySelector("textarea");
+    const status = form.querySelector(".pf-status");
+    const saved = new Map();
     let current = 0;
-    function showSent(result) {
-      sent.hidden = !result;
-      if (!result) return;
-      sent.querySelector("[data-s='code']").textContent = cases[current].code;
-      sent.querySelector("[data-s='result']").textContent = result;
-      sent.querySelector("[data-s='next']").textContent = nextSteps[result];
-    }
     function open(i) {
       current = i;
       const c = cases[i];
       queue.forEach((b, j) => b.setAttribute("aria-current", String(j === i)));
       img.src = c.img;
       Object.keys(fields).forEach((k) => (fields[k].textContent = c[k]));
-      report.reset();
-      report.querySelector(".pf-status").textContent = "";
-      const prev = results.get(i);
-      if (prev) report.querySelector(`input[value="${prev}"]`).checked = true;
-      showSent(prev);
+      form.reset();
+      status.textContent = "";
+      const prev = saved.get(i);
+      if (prev) {
+        form.querySelector(`input[value="${prev.dx}"]`).checked = true;
+        notes.value = prev.notes;
+        status.textContent = `Report sent to the site for ${c.code}.`;
+      }
     }
     queue.forEach((b, i) => b.addEventListener("click", () => open(i)));
-    report.addEventListener("submit", (e) => {
+    form.addEventListener("change", (e) => {
+      if (e.target.name === "dx") notes.value = reports[e.target.value];
+    });
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const choice = report.querySelector("input[name='dx']:checked");
-      const status = report.querySelector(".pf-status");
+      const choice = form.querySelector("input[name='dx']:checked");
       if (!choice) { status.textContent = "Choose a result first."; return; }
-      status.textContent = "";
-      results.set(current, choice.value);
+      saved.set(current, { dx: choice.value, notes: notes.value });
       queue[current].classList.add("reviewed");
-      showSent(choice.value);
+      status.textContent = `Report sent to the site for ${cases[current].code}.`;
     });
     open(0);
   }
 
-  /* ---------- contact: topic picker + form ---------- */
+  /* ---------- auto-advancing step animations ---------- */
+  // Steps through `count` states while the stage is on screen. Clicking a step jumps to it.
+  function stepper({ stage, count, ms, items, pauseBtn, onStep, statusEl }) {
+    let n = 0, timer = null, paused = false, visible = false;
+    function show(k) {
+      n = k;
+      items.forEach((li, i) => li.classList.toggle("on", i + 1 === k));
+      if (statusEl) statusEl.textContent = `Step ${k} of ${count}`;
+      onStep(k);
+    }
+    function schedule() {
+      clearTimeout(timer); timer = null;
+      if (paused || !visible) return;
+      const wait = typeof ms === "function" ? ms(n) : ms;
+      timer = setTimeout(() => { show(n % count + 1); schedule(); }, wait);
+    }
+    items.forEach((li, i) => li.addEventListener("click", () => { show(i + 1); schedule(); }));
+    if (pauseBtn) pauseBtn.addEventListener("click", () => {
+      paused = !paused;
+      pauseBtn.setAttribute("aria-pressed", String(paused));
+      pauseBtn.textContent = paused ? "Play" : "Pause";
+      schedule();
+    });
+    if (reduceMotion) {
+      paused = true;
+      if (pauseBtn) { pauseBtn.textContent = "Play"; pauseBtn.setAttribute("aria-pressed", "true"); }
+    }
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(stage);
+    show(1);
+  }
+
+  /* ---------- portal: how patient data moves ---------- */
+  const df = document.getElementById("df-svg");
+  if (df) {
+    const rows = df.querySelectorAll(".row");
+    const pkts = df.querySelectorAll(".pkt");
+    stepper({
+      stage: df, count: 6, ms: 3600,
+      items: document.querySelectorAll("#df-steps li"),
+      pauseBtn: document.getElementById("df-pause"),
+      statusEl: document.getElementById("df-status"),
+      onStep(k) {
+        rows.forEach((r) => {
+          const from = Number(r.dataset.show || 0);
+          r.classList.toggle("show", !from || k >= from);
+          r.classList.toggle("lit", (r.dataset.lit || "").split(" ").includes(String(k)));
+        });
+        pkts.forEach((p) => {
+          p.classList.remove("go");
+          void p.getBBox();
+          p.classList.toggle("go", Number(p.dataset.step) === k);
+        });
+      }
+    });
+  }
+
+  /* ---------- portal: the algorithm in development ---------- */
+  const ai = document.getElementById("ai-svg");
+  if (ai) {
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 1021, H = 766, COLS = 8, ROWS = 6, tw = W / COLS, th = H / ROWS;
+    // Abnormal cells in the illustration, most suspicious first.
+    const flagged = [[552, 415], [586, 402], [500, 382], [624, 354], [665, 352], [710, 450], [520, 268], [678, 382], [476, 356], [452, 555]];
+    const tiles = [];
+    const tileLayer = ai.querySelector("#ai-tiles");
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      const t = document.createElementNS(NS, "rect");
+      t.setAttribute("x", c * tw + 3); t.setAttribute("y", r * th + 3);
+      t.setAttribute("width", tw - 6); t.setAttribute("height", th - 6); t.setAttribute("rx", 10);
+      t.setAttribute("class", "tile");
+      t.hot = flagged.some(([x, y]) => Math.floor(x / tw) === c && Math.floor(y / th) === r);
+      tileLayer.append(t); tiles.push(t);
+    }
+    const flagLayer = ai.querySelector("#ai-flags");
+    const flags = flagged.map(([x, y], i) => {
+      const g = document.createElementNS(NS, "g");
+      g.setAttribute("class", i === 0 ? "flag top" : "flag");
+      g.innerHTML = `<circle cx="${x}" cy="${y}" r="30"/><circle class="n" cx="${x + 26}" cy="${y - 26}" r="16"/><text x="${x + 26}" y="${y - 18}" text-anchor="middle">${i + 1}</text>`;
+      flagLayer.append(g);
+      return g;
+    });
+    let sweep = null;
+    const clearSweep = () => { clearInterval(sweep); sweep = null; };
+    stepper({
+      stage: ai, count: 4, ms: (k) => [1200, 2200, 3800, 3200, 3400][k],
+      items: document.querySelectorAll("#ai-steps li"),
+      onStep(k) {
+        clearSweep();
+        ai.setAttribute("data-phase", k);
+        tiles.forEach((t) => t.classList.remove("scan", "hot"));
+        flags.forEach((f) => f.classList.toggle("on", k >= 3));
+        if (k === 2) {
+          if (reduceMotion) { tiles.forEach((t) => t.hot && t.classList.add("hot")); return; }
+          let i = 0;
+          sweep = setInterval(() => {
+            if (i > 0) { tiles[i - 1].classList.remove("scan"); if (tiles[i - 1].hot) tiles[i - 1].classList.add("hot"); }
+            if (i >= tiles.length) return clearSweep();
+            tiles[i++].classList.add("scan");
+          }, 3200 / tiles.length);
+        }
+        if (k === 3 && !reduceMotion) {
+          flags.forEach((f) => f.classList.remove("on"));
+          flags.forEach((f, i) => setTimeout(() => { if (ai.getAttribute("data-phase") === "3") f.classList.add("on"); }, 120 + i * 180));
+        }
+      }
+    });
+  }
+
+  /* ---------- solutions: highlight the section in view ---------- */
+  const pageNav = document.querySelectorAll(".page-nav a");
+  if (pageNav.length) {
+    const byId = new Map([...pageNav].map((a) => [a.getAttribute("href").slice(1), a]));
+    const seen = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) pageNav.forEach((a) => a.classList.toggle("on", a === byId.get(en.target.id)));
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    byId.forEach((_, id) => { const el = document.getElementById(id); if (el) seen.observe(el); });
+  }
+
+  /* ---------- contact: topic + form ---------- */
   const typeSelect = document.getElementById("f-type");
   const msg = document.getElementById("f-msg");
   if (typeSelect) {
@@ -468,14 +587,8 @@
       if (!(topic in prompts)) return;
       typeSelect.value = topic;
       msg.placeholder = prompts[topic];
-      document.querySelectorAll(".topic-card").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.topic === topic)));
     };
     typeSelect.addEventListener("change", () => setTopic(typeSelect.value));
-    document.querySelectorAll(".topic-card").forEach((c) => c.addEventListener("click", () => {
-      setTopic(c.dataset.topic);
-      // On wide screens the form sits beside the cards, so there is nothing to scroll to.
-      msg.focus({ preventScroll: window.innerWidth > 860 });
-    }));
     setTopic(new URLSearchParams(location.search).get("topic") || typeSelect.value);
   }
 

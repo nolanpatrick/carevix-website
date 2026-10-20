@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get in touch · CareVix</title>
-<meta name="description" content="Request a quote, ask about GyroStainer, join our pathologist network, support our work, or simply ask us a question.">
+<meta name="description" content="Ask about a Wave or Loop clinic, GyroStainer or the telecytology portal, support our work, or simply ask us a question.">
 <meta property="og:title" content="Get in touch · CareVix">
-<meta property="og:description" content="Request a quote, ask about GyroStainer, join our pathologist network, support our work, or simply ask us a question.">
+<meta property="og:description" content="Ask about a Wave or Loop clinic, GyroStainer or the telecytology portal, support our work, or simply ask us a question.">
 <meta property="og:image" content="assets/img/carevix-lockup.png">
 <link rel="icon" type="image/png" href="assets/img/carevix-symbol-solid.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,8 +26,6 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="solutions.html">Solutions</a></li>
       <li><a href="technology.html">Technology</a></li>
-      <li><a href="gyrostainer.html">GyroStainer</a></li>
-      <li><a href="telecytology.html">Telecytology</a></li>
       <li><a href="about.html">About</a></li>
       <li><a class="btn" href="get-involved.html" aria-current="page">Get in touch</a></li>
     </ul>
@@ -38,28 +36,13 @@
 <section class="page-hero">
   <div class="wrap">
     <h1>Get in touch</h1>
-    <p class="lede">Whether you run health programmes, fund them, read slides, or are simply curious about what we do, we'd love to hear from you.</p>
+    <p class="lede">Interested in a Wave or Loop clinic, GyroStainer or the telecytology portal, supporting our work, or simply have a question? Write to us and we'll get back to you.</p>
   </div>
 </section>
 
 <section class="section" style="padding-top:0">
-  <div class="wrap split" style="align-items:start">
-    <div>
-      <h2 style="font-size:var(--step-2)">What would you like to talk about?</h2>
-      <div class="topics">
-        <button class="topic-card" type="button" data-topic="quote" aria-pressed="false"><strong>Request a quote</strong><span>Plan screening with Wave or Loop for your NGO or health programme.</span></button>
-        <button class="topic-card" type="button" data-topic="lab" aria-pressed="false"><strong>GyroStainer for a lab</strong><span>Automated staining for your cytology laboratory.</span></button>
-        <button class="topic-card" type="button" data-topic="funding" aria-pressed="false"><strong>Invest or fund</strong><span>Support deployments, validation and the next GyroStainer.</span></button>
-        <button class="topic-card" type="button" data-topic="pathologist" aria-pressed="false"><strong>Join the review network</strong><span>For pathologists who read cervical cytology.</span></button>
-        <button class="topic-card" type="button" data-topic="research" aria-pressed="false"><strong>Research or clinical partnership</strong><span>Studies, pilots and clinical collaboration.</span></button>
-        <button class="topic-card" type="button" data-topic="press" aria-pressed="false"><strong>Press and media</strong><span>Interviews, articles and images.</span></button>
-        <button class="topic-card" type="button" data-topic="join" aria-pressed="false"><strong>Work with us</strong><span>Jobs, internships and student projects.</span></button>
-        <button class="topic-card" type="button" data-topic="curious" aria-pressed="false"><strong>Just curious</strong><span>Any question about our work or cervical cancer screening.</span></button>
-      </div>
-      <p class="aside-note"><strong>Planning a programme?</strong> Screening reaches more women when the community knows it's coming and why it matters. CareVix doesn't run awareness campaigns, so we recommend pairing a deployment with a local campaign organised by our partners.</p>
-    </div>
-
-    <div class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact contact-single" id="contact">
       <h2 style="font-size:var(--step-2)">Write to us</h2>
       <p class="small mt-1">Or email us directly at <a class="text-link" href="mailto:info@carevix.ch">info@carevix.ch</a></p>
       <form id="contact-form" novalidate>
@@ -69,14 +52,14 @@
           <div><label for="f-org">Organisation <span class="small">(optional)</span></label><input id="f-org" name="org" autocomplete="organization"></div>
           <div><label for="f-type">Topic</label>
             <select id="f-type" name="type">
-              <option value="quote" data-prompt="Tell us about your programme: where, how many women you expect to screen, and the health services already in place.">Request a quote</option>
-              <option value="lab" data-prompt="Tell us about your laboratory and how many slides you stain.">GyroStainer for a lab</option>
-              <option value="funding" data-prompt="Tell us what you'd like to support.">Invest or fund</option>
-              <option value="pathologist" data-prompt="Tell us about your experience reading cervical cytology.">Join the review network</option>
-              <option value="research" data-prompt="Tell us about the study or collaboration you have in mind.">Research or clinical partnership</option>
+              <option value="quote" data-prompt="Tell us about your programme: where, how many women you expect to screen, and the health services already in place.">A Wave or Loop clinic</option>
+              <option value="lab" data-prompt="Tell us about your laboratory or clinic and how many slides you stain.">GyroStainer</option>
+              <option value="portal" data-prompt="Tell us about your clinic or laboratory and how many slides you would like reviewed.">Telecytology portal</option>
+              <option value="funding" data-prompt="Tell us what you'd like to support.">Investing or funding</option>
+              <option value="research" data-prompt="Tell us about the study or collaboration you have in mind.">Research or partnership</option>
               <option value="press" data-prompt="Tell us about your publication and what you're working on.">Press and media</option>
-              <option value="join" data-prompt="Tell us about yourself and what you'd like to work on.">Work with us</option>
-              <option value="curious" data-prompt="Ask us anything." selected>Just curious</option>
+              <option value="join" data-prompt="Tell us about yourself and what you'd like to work on.">Working with us</option>
+              <option value="curious" data-prompt="Ask us anything." selected>Something else</option>
             </select>
           </div>
           <div class="full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
@@ -84,33 +67,6 @@
         <div class="btn-row" style="margin-top:1.4rem"><button class="btn" type="submit">Send message</button></div>
         <p class="form-status" id="form-status" role="status"></p>
       </form>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="background:#fff" aria-label="Working with CareVix">
-  <div class="wrap">
-    <div class="audiences" style="margin-top:0">
-      <div class="audience">
-        <h3>For NGOs and health programmes</h3>
-        <p>You bring knowledge of the communities and the programme. We bring the screen-triage-treat solution, and we plan the deployment with you.</p>
-        <ul class="offer-list">
-          <li><strong>A solution that fits</strong>Wave for high-demand sites, Loop for smaller or remote ones, in a mobile unit or a fixed clinic.</li>
-          <li><strong>The full pathway</strong>HPV self-testing, on-site cytology triage, remote review and thermal ablation of CIN2 and CIN3.</li>
-          <li><strong>GyroStainer on its own</strong>For laboratories that only need reliable, automated staining.</li>
-          <li><strong>Planned together</strong>We start with a conversation about the setting, the expected number of women and the existing health services.</li>
-        </ul>
-      </div>
-      <div class="audience">
-        <h3>For investors and funders</h3>
-        <p>Cervical cancer can be eliminated. Your support turns a working prototype and a proven workflow into deployments that reach women.</p>
-        <ul class="offer-list">
-          <li><strong>Pilot deployments</strong>Fund the first Wave and Loop sites with partner NGOs.</li>
-          <li><strong>Clinical validation</strong>Support the next GyroStainer studies: comparison with standard staining, repeatability and pilots in low-resource laboratories.</li>
-          <li><strong>AI-assisted review</strong>Help validate the algorithm that speeds up remote review.</li>
-          <li><strong>A strong foundation</strong>A team rooted in EPFL engineering and HUG clinical expertise.</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -125,10 +81,10 @@
       <div>
         <h3>Explore</h3>
         <ul>
-          <li><a href="solutions.html">Wave and Loop</a></li>
+          <li><a href="solutions.html#clinics">Wave and Loop clinics</a></li>
+          <li><a href="solutions.html#gyrostainer">GyroStainer</a></li>
+          <li><a href="solutions.html#portal">Telecytology portal</a></li>
           <li><a href="technology.html">Our technology</a></li>
-          <li><a href="gyrostainer.html">GyroStainer</a></li>
-          <li><a href="telecytology.html">Telecytology platform</a></li>
           <li><a href="about.html">About us</a></li>
           <li><a href="get-involved.html">Get in touch</a></li>
         </ul>
