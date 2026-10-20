@@ -322,12 +322,6 @@ p { margin: 0 0 1em; max-width: 62ch; }
 @media (max-width: 520px) { .sim-steps { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; } }
 @media (max-width: 860px) { .sim { grid-template-columns: 1fr; } }
 
-.spec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(2rem, 5vw, 4rem); margin-top: 2rem; }
-.spec { padding: 1.1rem 0; border-bottom: 1px solid var(--mist); }
-.spec strong { font-family: var(--display); font-size: 1.1rem; display: block; }
-.spec span { color: var(--ink-soft); }
-@media (max-width: 760px) { .spec-list { grid-template-columns: 1fr; } }
-
 /* microscope magnifier */
 .scope { position: relative; border-radius: var(--radius-photo); overflow: hidden; aspect-ratio: 4 / 3; background: #fff; cursor: zoom-in; touch-action: pan-y; }
 .scope img { width: 100%; height: 100%; object-fit: cover; }
@@ -369,7 +363,6 @@ p { margin: 0 0 1em; max-width: 62ch; }
 @media (prefers-reduced-motion: reduce) { #sim-svg #arm { transition: none; } #sim-svg #holder.dip, #sim-svg .ripple.go { animation: none; } }
 
 /* ---------- about ---------- */
-.founders { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); gap: clamp(2rem, 5vw, 4rem); margin-top: 3rem; }
 .founder .portrait {
   aspect-ratio: 4 / 5; border-radius: var(--radius-photo); background: #fff; border: 2px dashed #C6CAE0;
   display: grid; place-items: center; color: var(--ink-soft); font-size: .95rem; text-align: center; margin-bottom: 1.2rem;
@@ -377,18 +370,8 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .founder .portrait img { width: 90px; opacity: .5; margin: 0 auto .8rem; }
 .founder h3 { font-size: var(--step-2); }
 .founder .role { color: var(--ink-soft); font-weight: 600; margin: .3rem 0 .8rem; }
-@media (max-width: 640px) { .founders { grid-template-columns: 1fr; } }
-.collaborators { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 340px)); gap: clamp(2rem, 5vw, 4rem); margin-top: 3rem; }
 .founder .portrait.has-photo { border: 0; overflow: hidden; display: block; }
 .founder .portrait.has-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 1; margin: 0; }
-
-.thanks { background: var(--ink); color: #fff; }
-.thanks .lede { color: #C9CDEA; }
-.thanks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); margin-top: 3rem; }
-.org { background: #fff; color: var(--ink); border-radius: var(--radius-photo); padding: clamp(1.6rem, 3vw, 2.5rem); }
-.org img { height: 54px; width: auto; margin-bottom: 1.4rem; }
-.org h3 { font-size: var(--step-1); margin-bottom: .6rem; }
-@media (max-width: 860px) { .thanks-grid { grid-template-columns: 1fr; } }
 
 .contact { background: #fff; border-radius: var(--radius-photo); padding: clamp(1.6rem, 4vw, 3rem); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1.8rem; }
@@ -456,14 +439,6 @@ textarea { min-height: 150px; resize: vertical; }
 .phase-card .eyebrow { margin-bottom: .3rem; }
 .phase-card p { color: var(--ink-soft); }
 @media (max-width: 860px) { .phase-cards { grid-template-columns: 1fr; } }
-
-/* ---------- solutions: in-page nav ---------- */
-.page-nav { position: sticky; top: 76px; z-index: 40; background: rgba(245,246,251,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-block: 1px solid var(--mist); }
-.page-nav .wrap { display: flex; gap: .4rem; overflow-x: auto; padding-block: .6rem; scrollbar-width: none; }
-.page-nav a { flex: none; font-weight: 700; font-size: .93rem; text-decoration: none; padding: .45rem 1rem; border-radius: 999px; }
-.page-nav a:hover { background: #fff; }
-.page-nav a.on { background: var(--ink); color: #fff; }
-.has-page-nav [id] { scroll-margin-top: 140px; }
 
 /* clinic formats */
 .formats { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); margin-top: 2.5rem; }
@@ -565,3 +540,11 @@ textarea { min-height: 150px; resize: vertical; }
 .ref-list li { margin-bottom: .5rem; scroll-margin-top: 110px; }
 .ref-list li:target { color: var(--ink); }
 .burden .ref-list li:target { color: #fff; }
+
+/* ---------- about: people ---------- */
+.people h2, .people .lede { text-align: center; margin-inline: auto; }
+.people-row { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(2rem, 4vw, 3.5rem); margin-top: 3rem; }
+.people-row + .people-row { margin-top: clamp(2rem, 4vw, 3rem); }
+.people-row .founder { width: min(100%, 300px); text-align: center; }
+.people .partner-logos { justify-content: center; margin-top: clamp(3rem, 6vw, 5rem); }
+[id] { scroll-margin-top: 96px; }

@@ -540,18 +540,6 @@
     });
   }
 
-  /* ---------- solutions: highlight the section in view ---------- */
-  const pageNav = document.querySelectorAll(".page-nav a");
-  if (pageNav.length) {
-    const byId = new Map([...pageNav].map((a) => [a.getAttribute("href").slice(1), a]));
-    const seen = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (en.isIntersecting) pageNav.forEach((a) => a.classList.toggle("on", a === byId.get(en.target.id)));
-      });
-    }, { rootMargin: "-40% 0px -55% 0px" });
-    byId.forEach((_, id) => { const el = document.getElementById(id); if (el) seen.observe(el); });
-  }
-
   /* ---------- contact: topic + form ---------- */
   const typeSelect = document.getElementById("f-type");
   const msg = document.getElementById("f-msg");
