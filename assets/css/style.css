@@ -518,9 +518,6 @@ textarea { min-height: 150px; resize: vertical; }
 .step-list.pink li.on b { background: var(--pink); }
 .step-list strong { font-family: var(--display); font-size: 1.05rem; }
 .step-list span { color: var(--ink-soft); font-size: .93rem; }
-.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }
-.chips span { display: inline-flex; align-items: center; gap: .45rem; background: #fff; border-radius: 999px; padding: .45rem .9rem; font-weight: 600; font-size: .9rem; }
-.chips span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
 
 #df-svg text { font-family: var(--body); }
 #df-svg .lane { stroke: #C6CAE0; stroke-width: 3; stroke-dasharray: 2 8; stroke-linecap: round; fill: none; }
