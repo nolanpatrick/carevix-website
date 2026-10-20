@@ -255,8 +255,6 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .tech-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); margin-top: 1.5rem; }
 .tech-cols h3 { margin-bottom: .5rem; }
 @media (max-width: 760px) { .tech-cols { grid-template-columns: 1fr; } }
-.further { margin-top: 1.5rem; padding-left: 1.2rem; }
-.further li { margin-bottom: .5rem; }
 
 /* ---------- telecytology page ---------- */
 .flow { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--mist); border-radius: 20px; overflow: hidden; counter-reset: flow; }
@@ -505,12 +503,8 @@ textarea { min-height: 150px; resize: vertical; }
 .pf-report textarea { min-height: 130px; font-size: .9rem; line-height: 1.45; }
 
 /* ---------- data flow animation ---------- */
-.dataflow { margin-top: 2.5rem; max-width: 980px; }
+.dataflow { margin-top: 2rem; max-width: 900px; }
 
-.dataflow .anim-top { margin-top: 1.4rem; }
-.dataflow .step-list { grid-template-columns: repeat(3, 1fr); gap: .4rem; }
-@media (max-width: 860px) { .dataflow .step-list { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .dataflow .step-list { grid-template-columns: 1fr; } }
 .dataflow-stage { background: #fff; border-radius: 24px; padding: clamp(.5rem, 2vw, 1.2rem); }
 .dataflow-stage svg { width: 100%; height: auto; display: block; }
 .anim-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .6rem; }
@@ -529,22 +523,12 @@ textarea { min-height: 150px; resize: vertical; }
 .chips span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
 
 #df-svg text { font-family: var(--body); }
-#df-svg .box { fill: var(--glass); stroke: var(--mist); stroke-width: 2; }
-#df-svg .box-title { font: 800 18px var(--display); fill: var(--ink); }
-#df-svg .box-sub { font-size: 11.5px; fill: var(--ink-soft); }
-#df-svg .row rect { fill: #fff; stroke: var(--mist); stroke-width: 1.5; transition: fill .4s, stroke .4s; }
-#df-svg .row text { font-size: 12.5px; font-weight: 600; fill: var(--ink); }
-#df-svg .row .tag { font-size: 10px; font-weight: 700; fill: var(--pink); }
-#df-svg .row.lit rect { fill: #FFF2F7; stroke: var(--pink); }
-#df-svg .row.ghost { opacity: .25; transition: opacity .4s; }
-#df-svg .row.ghost.show { opacity: 1; }
-#df-svg .link { stroke: #C6CAE0; stroke-width: 2; stroke-dasharray: 5 6; fill: none; }
-#df-svg .pkt { opacity: 0; }
-#df-svg .pkt rect { fill: var(--ink); }
-#df-svg .pkt text { fill: #fff; font-size: 12px; font-weight: 700; }
-#df-svg .pkt.go { animation: pkt 2.4s cubic-bezier(.5,0,.3,1) infinite; }
-@keyframes pkt { 0% { opacity: 0; transform: translateX(0); } 12% { opacity: 1; transform: translateX(0); } 75% { opacity: 1; transform: translateX(var(--dx)); } 100% { opacity: 0; transform: translateX(var(--dx)); } }
-@media (prefers-reduced-motion: reduce) { #df-svg .pkt.go { animation: none; opacity: 1; transform: translateX(calc(var(--dx) / 2)); } }
+#df-svg .lane { stroke: #C6CAE0; stroke-width: 3; stroke-dasharray: 2 8; stroke-linecap: round; fill: none; }
+#df-svg .arrow { stroke: #9AA0C4; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+#df-svg .lane-label { font-size: 13px; font-weight: 600; fill: var(--ink-soft); }
+#df-svg .node-title { font: 800 20px var(--display); fill: var(--ink); }
+#df-svg .node-sub { font-size: 14px; fill: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { #df-svg circle[opacity] { display: none; } }
 
 /* ---------- AI animation ---------- */
 .ai-demo { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; margin-top: 2.5rem; }

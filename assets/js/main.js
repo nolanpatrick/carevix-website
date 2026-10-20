@@ -488,31 +488,6 @@
     show(1);
   }
 
-  /* ---------- portal: how patient data moves ---------- */
-  const df = document.getElementById("df-svg");
-  if (df) {
-    const rows = df.querySelectorAll(".row");
-    const pkts = df.querySelectorAll(".pkt");
-    stepper({
-      stage: df, count: 6, ms: 3600,
-      items: document.querySelectorAll("#df-steps li"),
-      pauseBtn: document.getElementById("df-pause"),
-      statusEl: document.getElementById("df-status"),
-      onStep(k) {
-        rows.forEach((r) => {
-          const from = Number(r.dataset.show || 0);
-          r.classList.toggle("show", !from || k >= from);
-          r.classList.toggle("lit", (r.dataset.lit || "").split(" ").includes(String(k)));
-        });
-        pkts.forEach((p) => {
-          p.classList.remove("go");
-          void p.getBBox();
-          p.classList.toggle("go", Number(p.dataset.step) === k);
-        });
-      }
-    });
-  }
-
   /* ---------- portal: the algorithm in development ---------- */
   const ai = document.getElementById("ai-svg");
   if (ai) {
