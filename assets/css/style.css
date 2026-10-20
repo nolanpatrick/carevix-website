@@ -487,15 +487,12 @@ textarea { min-height: 150px; resize: vertical; }
 
 /* condensed workflow */
 .flow-steps { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: .6rem; }
-.flow-steps li { background: #fff; border-radius: 16px; padding: 1rem 1.1rem; border-left: 5px solid var(--ink); }
-.flow-steps li.screen { border-color: var(--violet); }
-.flow-steps li.triage { border-color: var(--teal); }
-.flow-steps li.treat { border-color: var(--pink); }
-.flow-steps .when { display: block; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+.flow-steps li { background: #fff; border-radius: 16px; padding: 1rem 1.1rem; }
+.flow-steps .when { display: block; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
 .flow-steps strong { display: block; font-family: var(--display); font-size: 1.1rem; margin: .1rem 0 .2rem; }
 .flow-steps .what { color: var(--ink-soft); font-size: .95rem; }
 @media (max-width: 600px) {
-  .flow-steps li { padding: .8rem .75rem; border-left-width: 4px; }
+  .flow-steps li { padding: .8rem .75rem; }
   .flow-steps strong { font-size: .98rem; }
   .flow-steps .what { font-size: .87rem; }
   .flow-steps .when { font-size: .68rem; }
