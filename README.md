@@ -1,10 +1,10 @@
-# CareVix website
+# UnaVix website
 
 Static site (HTML, CSS, JavaScript). No build step, no dependencies.
 
 ## Pages
 - `index.html`: home (interactive microscope hero, the problem, the pathway in brief, what we offer)
-- `solutions.html`: Wave and Loop clinics (mobile or fixed), GyroStainer (`#gyrostainer`, protocol animation, specs) and the telecytology portal (`#portal`, example review, data protection animation, AI in development)
+- `solutions.html`: Wave and Loop clinic models (concepts, pilot planned in Cameroon), GyroStainer (`#gyrostainer`) and the telecytology portal (`#portal`). Each has a status pill; keep them honest as things progress
 - `technology.html`: scroll-driven pathway from self-sample to treatment, why cytology, thermal ablation
 - `about.html`: founders, collaborators and partners
 - `get-involved.html`: contact form that opens an email to info@carevix.ch. Preselect a topic with `get-involved.html?topic=quote` (also `lab`, `portal`, `funding`, `research`, `press`, `join`, `curious`)

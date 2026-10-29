@@ -1,5 +1,5 @@
-/* CareVix — shared styles
-   Palette taken from the CareVix logo, which shares its colours with a Pap-stained slide. */
+/* UnaVix — shared styles
+   Palette taken from the UnaVix logo, which shares its colours with a Pap-stained slide. */
 
 :root {
   --ink: #1E2657;        /* logo navy */
@@ -549,3 +549,13 @@ textarea { min-height: 150px; resize: vertical; }
 .people .partner-logos { margin-top: clamp(2rem, 4vw, 3rem); }
 .people .partner-logos { justify-content: center; }
 [id] { scroll-margin-top: 96px; }
+
+/* ---------- status pills ---------- */
+.status { display: inline-block; width: fit-content; font-family: var(--body); font-size: .78rem; font-weight: 700; letter-spacing: .01em; line-height: 1.3; padding: .28rem .75rem; border-radius: 999px; background: #FFF1D6; color: #8A5A00; vertical-align: middle; }
+.status.tested { background: #E1F4F4; color: #136F71; }
+.status.dev { background: #ECEAFA; color: #4A3BA3; }
+h2 + .status { margin-top: .9rem; }
+.lede .status { margin-left: .3rem; }
+.audiences.three { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 960px) { .audiences.three { grid-template-columns: 1fr; } }
+.audience:nth-child(3) { border-color: var(--teal); }

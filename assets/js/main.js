@@ -1,4 +1,4 @@
-/* CareVix — site interactions. No dependencies. */
+/* UnaVix — site interactions. No dependencies. */
 (function () {
   "use strict";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -406,9 +406,9 @@
   const platform = document.getElementById("platform");
   if (platform) {
     const cases = [
-      { code: "CVX-7F3A", age: 41, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-1.jpg" },
-      { code: "CVX-2C91", age: 36, hpv: "Positive", hiv: "Positive", history: "Screened in 2021, normal", img: "assets/img/pap-field-2.jpg" },
-      { code: "CVX-B804", age: 47, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-hsil.jpg" }
+      { code: "UVX-7F3A", age: 41, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-1.jpg" },
+      { code: "UVX-2C91", age: 36, hpv: "Positive", hiv: "Positive", history: "Screened in 2021, normal", img: "assets/img/pap-field-2.jpg" },
+      { code: "UVX-B804", age: 47, hpv: "Positive", hiv: "Negative", history: "First screening", img: "assets/img/pap-field-hsil.jpg" }
     ];
     const reports = {
       "NILM": "Negative for intraepithelial lesion or malignancy. No treatment needed. Rescreen as set in the programme guidelines.",
@@ -552,7 +552,9 @@
       msg.placeholder = prompts[topic];
     };
     typeSelect.addEventListener("change", () => setTopic(typeSelect.value));
-    setTopic(new URLSearchParams(location.search).get("topic") || typeSelect.value);
+    const aliases = { quote: "pilot" };
+    const asked = new URLSearchParams(location.search).get("topic");
+    setTopic(aliases[asked] || asked || typeSelect.value);
   }
 
   const form = document.getElementById("contact-form");
@@ -573,7 +575,7 @@
       const payload = {
         access_key: WEB3FORMS_KEY,
         subject: `[${label}] Message from ${f.get("name")}${f.get("org") ? " – " + f.get("org") : ""}`,
-        from_name: "CareVix website",
+        from_name: "UnaVix website",
         name: f.get("name"),
         email: f.get("email"),
         organisation: f.get("org") || "",
