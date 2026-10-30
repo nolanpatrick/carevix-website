@@ -557,17 +557,22 @@ h2 + .status { margin-top: .9rem; }
 .audience:nth-child(3) { border-color: var(--teal); }
 
 /* ---------- roadmap ---------- */
-/* Stacked cards: step, title and text on the left, key questions on the right. */
-.roadmap { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1rem; }
-.roadmap > li { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: clamp(1.5rem, 4vw, 3rem); row-gap: .55rem; background: var(--glass); border-radius: 22px; padding: clamp(1.2rem, 2.5vw, 1.7rem) clamp(1.2rem, 3vw, 2rem); }
-.roadmap > li > .rm-head, .roadmap > li > h4, .roadmap > li > p { grid-column: 1; }
-.roadmap .rm-head { display: flex; align-items: center; gap: .6rem; }
-.roadmap .rm-num { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; font-size: .85rem; }
+/* A numbered timeline rail on the left, cards on the right:
+   step, title and text in the card's left column, key questions in its right column. */
+.roadmap { --p: clamp(1.2rem, 2.5vw, 1.7rem); --rail: 44px; --gap: 1rem; list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: var(--gap); }
+.roadmap > li { position: relative; display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: clamp(.8rem, 2vw, 1.4rem); }
+.roadmap > li::before { content: ""; position: absolute; left: calc(var(--rail) / 2 - 1px); top: 0; bottom: calc(-1 * var(--gap)); width: 2px; background: #C6CAE0; }
+.roadmap > li:first-child::before { top: calc(var(--p) + 8px); }
+.roadmap > li:last-child::before { bottom: auto; height: calc(var(--p) + 8px); }
+.roadmap > li:only-child::before { display: none; }
+.roadmap .rm-num { position: relative; z-index: 1; grid-column: 1; justify-self: center; align-self: start; margin-top: calc(var(--p) - 12px); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; font-size: .95rem; box-shadow: 0 0 0 5px #fff; }
 .roadmap .next .rm-num { background: var(--pink); }
-.roadmap .rm-when { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; line-height: 1.3; color: var(--ink-soft); }
+.roadmap .rm-card { grid-column: 2; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: clamp(1.5rem, 4vw, 3rem); row-gap: .55rem; background: var(--glass); border-radius: 22px; padding: var(--p) clamp(1.2rem, 3vw, 2rem); }
+.roadmap .rm-card > .rm-head, .roadmap .rm-card > h4, .roadmap .rm-card > p { grid-column: 1; }
+.roadmap .rm-when { display: block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; line-height: 1.3; color: var(--ink-soft); }
 .roadmap .next .rm-when { color: var(--pink); }
 .roadmap h4 { margin: .15rem 0 0; font-family: var(--display); font-size: var(--step-1); line-height: 1.2; }
-.roadmap > li > p { margin: 0; font-size: .97rem; color: var(--ink-soft); max-width: 52ch; }
+.roadmap .rm-card > p { margin: 0; font-size: .97rem; color: var(--ink-soft); max-width: 52ch; }
 .roadmap .rm-box { grid-column: 2; grid-row: 1 / span 3; align-self: start; background: #fff; border-radius: 16px; padding: 1rem 1.15rem; }
 .roadmap .rm-box-title { margin: 0 0 .5rem; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); }
 .roadmap .rm-box ul { list-style: none; margin: 0; padding: 0; }
@@ -575,6 +580,8 @@ h2 + .status { margin-top: .9rem; }
 .roadmap .rm-box li:last-child { margin-bottom: 0; }
 .roadmap .rm-box li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
 @media (max-width: 760px) {
-  .roadmap > li { grid-template-columns: 1fr; grid-template-rows: none; }
+  .roadmap { --rail: 32px; }
+  .roadmap .rm-num { width: 32px; height: 32px; font-size: .85rem; margin-top: calc(var(--p) - 8px); box-shadow: 0 0 0 4px #fff; }
+  .roadmap .rm-card { grid-template-columns: 1fr; grid-template-rows: none; }
   .roadmap .rm-box { grid-column: 1; grid-row: auto; margin-top: .45rem; }
 }
