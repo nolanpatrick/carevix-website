@@ -557,3 +557,24 @@ h2 + .status { margin-top: .9rem; }
 .audiences.three { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 960px) { .audiences.three { grid-template-columns: 1fr; } }
 .audience:nth-child(3) { border-color: var(--teal); }
+
+/* ---------- roadmap ---------- */
+.roadmap { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; counter-reset: rm; }
+.roadmap > li { position: relative; padding-top: 48px; counter-increment: rm; }
+.roadmap > li::before { content: counter(rm); position: absolute; top: 0; left: 0; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-weight: 800; font-size: .85rem; z-index: 1; }
+.roadmap > li.now::before { background: var(--pink); }
+.roadmap > li:not(:last-child)::after { content: ""; position: absolute; top: 15px; left: 32px; right: -1rem; height: 2px; background: var(--mist); }
+.roadmap > li > * { position: relative; }
+.roadmap .rm-when { margin: 0 0 .35rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+.roadmap .now .rm-when { color: var(--pink); }
+.roadmap h4 { margin: 0 0 .45rem; font-family: var(--display); font-size: 1.08rem; line-height: 1.25; }
+.roadmap p { font-size: .92rem; color: var(--ink-soft); margin: 0 0 .5rem; }
+.roadmap ul { list-style: none; margin: .6rem 0 0; padding: .7rem .8rem; background: var(--glass); border-radius: 12px; }
+.roadmap ul li { font-size: .85rem; line-height: 1.4; padding-left: 1rem; position: relative; margin-bottom: .35rem; }
+.roadmap ul li:last-child { margin-bottom: 0; }
+.roadmap ul li::before { content: ""; position: absolute; left: 0; top: .5em; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+@media (max-width: 1000px) {
+  .roadmap { grid-template-columns: 1fr; gap: 1.6rem; }
+  .roadmap > li { padding-top: 0; padding-left: 48px; }
+  .roadmap > li:not(:last-child)::after { top: 32px; bottom: -1.6rem; left: 15px; right: auto; width: 2px; height: auto; }
+}
