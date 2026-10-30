@@ -585,20 +585,3 @@ h2 + .status { margin-top: .9rem; }
   .roadmap > li { display: block; }
   .roadmap > li > * + * { margin-top: .6rem; }
 }
-
-/* ---------- solutions: pilot 1 ---------- */
-.pilot-one { margin-top: 2rem; background: #fff; border-radius: 24px; padding: clamp(1.3rem, 3vw, 2rem); }
-.pilot-one h4 { margin: 0 0 .6rem; font-family: var(--display); font-size: var(--step-1); }
-.pilot-one > p { color: var(--ink-soft); }
-.pilot-label { margin: 0 0 .4rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--pink); }
-.pilot-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
-.pilot-option { background: var(--glass); border-radius: 18px; padding: 1.2rem 1.3rem; }
-.pilot-option .pilot-label { color: var(--ink-soft); }
-.pilot-option h5 { margin: 0 0 .4rem; font-family: var(--display); font-size: 1.1rem; }
-.pilot-option p:last-child { margin: 0; font-size: .95rem; color: var(--ink-soft); }
-.pilot-both { margin: 1.2rem 0 0; font-weight: 600; color: var(--ink) !important; }
-.flow.two { grid-template-columns: repeat(2, 1fr); margin-top: 1rem; }
-.flow.two li::before { content: counter(flow, decimal); }
-.flow.two { counter-reset: flow 1; }
-@media (max-width: 760px) { .pilot-options, .flow.two { grid-template-columns: 1fr; } }
-.pilot-one > .pilot-label { color: var(--pink); }
