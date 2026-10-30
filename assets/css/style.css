@@ -563,7 +563,8 @@ h2 + .status { margin-top: .9rem; }
 .roadmap > li { position: relative; display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: clamp(.8rem, 2vw, 1.4rem); }
 .roadmap > li::before { content: ""; position: absolute; left: calc(var(--rail) / 2 - 1px); top: 0; bottom: calc(-1 * var(--gap)); width: 2px; background: #C6CAE0; }
 .roadmap > li:first-child::before { top: calc(var(--p) + 8px); }
-.roadmap > li:last-child::before { bottom: auto; height: calc(var(--p) + 8px); }
+.roadmap > li:last-child::before { bottom: 12px; }
+.roadmap > li:last-child::after { content: ""; position: absolute; left: calc(var(--rail) / 2 - 8px); bottom: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 13px solid #C6CAE0; }
 .roadmap > li:only-child::before { display: none; }
 .roadmap .rm-num { position: relative; z-index: 1; grid-column: 1; justify-self: center; align-self: start; margin-top: calc(var(--p) - 12px); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 800; font-size: .95rem; box-shadow: 0 0 0 5px #fff; }
 .roadmap .next .rm-num { background: var(--pink); }
