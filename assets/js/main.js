@@ -219,19 +219,6 @@
     setStep(1);
   }
 
-  /* ---------- timelines play when seen ---------- */
-  function playTimeline(list) {
-    list.classList.remove("play");
-    const items = list.querySelectorAll("li");
-    items.forEach((li, i) => (li.style.transitionDelay = reduceMotion ? "0ms" : `${i * 90}ms`));
-    void list.offsetWidth;
-    list.classList.add("play");
-  }
-  const tlObserver = new IntersectionObserver((entries) => {
-    entries.forEach((en) => { if (en.isIntersecting) { playTimeline(en.target); tlObserver.unobserve(en.target); } });
-  }, { threshold: 0.2 });
-  document.querySelectorAll(".timeline").forEach((t) => tlObserver.observe(t));
-
   /* ---------- GyroStainer: the protocol on a loop ---------- */
   const sim = document.getElementById("sim-svg");
   if (sim) {
