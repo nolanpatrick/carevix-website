@@ -4,7 +4,7 @@ Static site (HTML, CSS, JavaScript). No build step, no dependencies.
 
 ## Pages
 - `index.html`: home (microscope hero, what the tools can be used for, our technologies, our roadmap, partner with us)
-- `solutions.html`: the complete pathology workflow customers can buy (sample preparation, staining, digitisation, remote reading, power and internet), as a package builder that pre-fills the contact form, plus implementation support
+- `solutions.html`: the complete pathology workflow customers can buy (sample preparation, staining, digitisation, remote reading, power and internet), implementation support, and a quote request
 - `technologies.html`: GyroStainer (`#gyrostainer`), the telepathology portal (`#portal`) and machine learning (`#ai`)
 - `cervical-screening.html`: our first focus: the problem, the same-day pathway, a scroll-driven walk through each step, why on-site pathology still matters with HPV testing, why cytology, thermal ablation
 - `about.html`: founders, collaborators and partners
