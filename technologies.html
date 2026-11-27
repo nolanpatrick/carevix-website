@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611271">
+<link rel="stylesheet" href="assets/css/style.css?v=202611272">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,7 +42,7 @@
 <section class="page-hero">
   <div class="wrap">
     <h1>Our technologies</h1>
-    <p class="lede">Automated staining, remote review and machine learning that bring lab-quality pathology to clinics without a laboratory or an on-site pathologist.</p>
+    <p class="lede">Automated staining, remote review and machine learning that enable lab-quality pathology in clinics without a laboratory or an on-site pathologist.</p>
     <div class="offer-cards">
       <a class="offer-card" href="#gyrostainer">
         <span class="icon" style="background:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 10V4"/></svg></span>
@@ -54,13 +54,13 @@
         <span class="icon" style="background:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><circle cx="12" cy="10" r="2.5"/></svg></span>
         <span class="status">In development · Pilot planned</span>
         <strong>Telepathology portal</strong>
-        <span class="desc">Remote review by our trusted pathologist network.</span>
+        <span class="desc">Remote review by local pathologists or our network.</span>
       </a>
       <a class="offer-card" href="#ai">
         <span class="icon" style="background:var(--violet)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></svg></span>
         <span class="status">In development</span>
-        <strong>Machine learning</strong>
-        <span class="desc">Points pathologists straight to the most suspicious cells in cervical cytology samples.</span>
+        <strong>ML for cervical samples</strong>
+        <span class="desc">Assists pathologists in reading cervical cytology samples.</span>
       </a>
     </div>
   </div>
@@ -74,7 +74,7 @@
         <p class="eyebrow pink">Autostainer</p>
         <h2 id="gs-title">GyroStainer</h2>
         <span class="status">Lab validated · Pilot planned</span>
-        <p class="lede mt-1">A compact, low-cost automated stainer that stains slides consistently. It can stain traditional Pap smears and liquid-based cytology slides, and run H&amp;E for histology or Giemsa for fine-needle aspiration cytology (FNAC). GyroStainer is optimised for remote digital pathology diagnosis.</p>
+        <p class="lede mt-1">A compact, low-cost automated stainer that stains slides consistently. It can stain traditional Pap smears and liquid-based cytology slides, and run H&amp;E for histology or Giemsa for fine-needle aspiration cytology (FNAC).</p>
         <ul class="gs-specs">
           <li><strong>9</strong><span>glass reagent stations</span></li>
           <li><strong>1</strong><span>fan drying station</span></li>
@@ -87,7 +87,7 @@
 
     <div class="sub-block" id="simulator">
       <h3>Our pre-validated Pap stain protocol</h3>
-      <p class="lede">Sized for decentralised, low-throughput triage, GyroStainer carries up to six slides through every stain, rinse and dehydration bath with precise timing, then dries them ready for scanning. Protocols are chosen on the touchscreen, or created and edited from a web browser. Follow the full protocol below, sped up.</p>
+      <p class="lede">This is our pre-validated Pap stain protocol, specifically optimised for remote digital pathology. It is also adapted to low-resource settings: it uses xylene instead of NeoClear, and fan drying instead of high-percentage ethanol. Follow the full protocol below, sped up.</p>
       <div class="sim mt-3">
         <div class="sim-stage">
           <svg id="sim-svg" viewBox="0 0 400 400" role="img" aria-label="Top view of GyroStainer's ten stations and rotating arm">
@@ -130,7 +130,7 @@
       <p class="eyebrow teal">Software</p>
       <h2 id="portal-title">Telepathology portal</h2>
       <span class="status">In development · Pilot planned</span>
-      <p class="lede">The portal is designed to connect each site with a trusted network of pathologists, who review slides remotely and return results quicker, without an on-site pathologist. Patient data stays protected: names never leave the clinic, and only a code, the slide and the clinical data needed for a diagnosis are shared, encrypted.</p>
+      <p class="lede">The portal is designed to connect each site with pathologists who review its slides remotely and return results quicker, without an on-site pathologist. Patient data stays protected: names never leave the clinic, and only a code, the slide and the clinical data needed for a diagnosis are shared, encrypted.</p>
     </div>
 
     <div class="sub-block">
@@ -191,11 +191,33 @@
       </div>
     </div>
 
-    <div class="sub-block" id="ai">
-      <p class="eyebrow pink">In development</p>
-      <h3>Using machine learning to speed up review</h3>
+    <div class="sub-block">
+      <h3>Who reads the slides</h3>
+      <p class="lede">Slides are read by remote pathologists, and each programme chooses who they work with.</p>
+      <div class="choice-cards">
+        <div class="choice-card">
+          <h4>Local pathologists</h4>
+          <p>Pathologists hired locally, from the main hospitals of the country, read the slides through the portal.</p>
+        </div>
+        <div class="choice-card">
+          <h4>The UnaVix network</h4>
+          <p>We provide a network of pathologists who read the slides for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MACHINE LEARNING ============ -->
+<section class="section bg-white" id="ai" aria-labelledby="ai-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Machine learning</p>
+      <h2 id="ai-title">ML for cervical samples</h2>
+      <span class="status">In development</span>
       <p class="lede">With EPFL's Signal Processing Laboratory 5, we are developing an algorithm for cervical cytology samples that analyses every digitised slide and points the pathologist straight to the most suspicious cells.</p>
-      <div class="ai-demo">
+    </div>
+    <div class="ai-demo">
         <div class="ai-stage">
           <svg id="ai-svg" viewBox="0 0 1021 766" data-phase="0" role="img" aria-label="Animation: the algorithm divides a slide into tiles, scores each cell and flags the most suspicious ones.">
             <image href="assets/img/pap-field-hsil.jpg" width="1021" height="766"/>
@@ -218,7 +240,6 @@
         <div><strong>About 5 minutes</strong><span>to reach a diagnosis by going straight to the flagged cells</span></div>
       </div>
       <p class="small mt-1">Early research figures. Once validated, the algorithm will be built into the portal at no extra cost to our partners.</p>
-    </div>
   </div>
 </section>
 
@@ -261,6 +282,6 @@
     <div class="footer-base">© <span id="year">2026</span> UnaVix. GyroStainer was developed at the Signal Processing Laboratory 5, EPFL, in collaboration with HUG.</div>
   </div>
 </footer>
-<script src="assets/js/main.js?v=202611271"></script>
+<script src="assets/js/main.js?v=202611272"></script>
 </body>
 </html>
