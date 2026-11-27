@@ -3,12 +3,12 @@
 Static site (HTML, CSS, JavaScript). No build step, no dependencies.
 
 ## Pages
-- `index.html`: home (microscope hero, the problem, where UnaVix fits in the screen-triage-treat pathway, status of each tool, the Cameroon pilot, partners)
-- `solutions.html`: GyroStainer (`#gyrostainer`), the telecytology portal (`#portal`) and machine learning (`#ai`), each with a status pill; keep them honest as things progress
-- `technology.html`: scroll-driven pathway from self-sample to treatment, why cytology, thermal ablation
+- `index.html`: home (microscope hero, what the tools can be used for, status of each tool, next steps, partners)
+- `technologies.html`: GyroStainer (`#gyrostainer`), the telepathology portal (`#portal`) and machine learning (`#ai`), each with a status pill; keep them honest as things progress
+- `cervical-screening.html`: our first focus: the problem, the same-day pathway, a scroll-driven walk through each step, why cytology, thermal ablation
 - `about.html`: founders, collaborators and partners
 - `get-involved.html`: contact form, sent through Web3Forms to info@unavix.ch. Preselect a topic with `/get-involved?topic=pilot` (also `funding`, `lab`, `portal`, `research`, `press`, `join`, `curious`)
-- `gyrostainer.html`, `telecytology.html`: redirects to the matching section of `solutions.html`, so old links keep working
+- `solutions.html`, `technology.html`, `gyrostainer.html`, `telecytology.html`: redirects from old addresses, so old links keep working
 
 ## Structure
 - `assets/css/style.css`: all styles; brand colours are at the top

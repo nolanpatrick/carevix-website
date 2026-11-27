@@ -318,7 +318,7 @@
     function reset() {
       idx = -1; angle = 0; arm.style.transform = "rotate(0deg)";
       bar.style.width = "0"; smear.style.background = "";
-      statusEl.textContent = "Four slides loaded";
+      statusEl.textContent = "Six slides loaded";
       highlight(-1);
     }
     function schedule(ms) { clearTimeout(timer); timer = setTimeout(tick, ms); }
@@ -328,7 +328,7 @@
       idx++;
       if (idx >= protocol.length) {
         idx = protocol.length;
-        statusEl.textContent = "Done: four slides ready for review";
+        statusEl.textContent = "Done: six slides ready for review";
         highlight(protocol.length);
         timer = setTimeout(() => { timer = null; if (paused || !visible) return; reset(); schedule(900); }, restMs);
         return;
@@ -389,7 +389,7 @@
     });
   });
 
-  /* ---------- telecytology portal: example review ---------- */
+  /* ---------- telepathology portal: example review ---------- */
   const platform = document.getElementById("platform");
   if (platform) {
     const cases = [
