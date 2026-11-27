@@ -527,6 +527,37 @@
     });
   }
 
+  /* ---------- solutions: package builder ---------- */
+  const builder = document.getElementById("builder");
+  if (builder) {
+    const items = builder.querySelectorAll('input[name="item"]');
+    const patho = builder.querySelector(".pkg-patho");
+    const list = document.getElementById("pkg-list");
+    const empty = document.getElementById("pkg-empty");
+    const quote = document.getElementById("pkg-quote");
+    const presets = { lab: ["gyrostainer"], remote: ["portal"], programme: ["gyrostainer", "portal"] };
+    function update() {
+      const chosen = [...items].filter((i) => i.checked).map((i) => i.value);
+      patho.hidden = !chosen.includes("portal");
+      const who = builder.querySelector('input[name="patho"]:checked').value === "unavix" ? "UnaVix pathologists" : "your own pathologists";
+      const parts = chosen.map((v) => (v === "portal" ? `Telepathology portal, with ${who}` : "GyroStainer"));
+      if (parts.length) parts.push("Implementation support");
+      list.innerHTML = parts.map((p) => `<li>${p}</li>`).join("");
+      empty.hidden = parts.length > 0;
+      quote.setAttribute("aria-disabled", String(!chosen.length));
+      quote.href = chosen.length ? `/get-involved?topic=quote&package=${encodeURIComponent(parts.join("; "))}` : "/get-involved?topic=quote";
+    }
+    builder.addEventListener("change", update);
+    quote.addEventListener("click", (e) => { if (quote.getAttribute("aria-disabled") === "true") e.preventDefault(); });
+    document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => {
+      const want = presets[b.dataset.preset] || [];
+      items.forEach((i) => (i.checked = want.includes(i.value)));
+      update();
+      document.getElementById("build").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    }));
+    update();
+  }
+
   /* ---------- contact: topic + form ---------- */
   const typeSelect = document.getElementById("f-type");
   const msg = document.getElementById("f-msg");
@@ -539,9 +570,11 @@
       msg.placeholder = prompts[topic];
     };
     typeSelect.addEventListener("change", () => setTopic(typeSelect.value));
-    const aliases = { quote: "pilot" };
-    const asked = new URLSearchParams(location.search).get("topic");
-    setTopic(aliases[asked] || asked || typeSelect.value);
+    const params = new URLSearchParams(location.search);
+    setTopic(params.get("topic") || typeSelect.value);
+    // A package built on the solutions page arrives as ?package=...
+    const pkg = params.get("package");
+    if (pkg && !msg.value) msg.value = `I would like a quote for: ${pkg}.\n\n`;
   }
 
   const form = document.getElementById("contact-form");

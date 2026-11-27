@@ -2,13 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex">
-<title>Our technologies · UnaVix</title>
-<meta http-equiv="refresh" content="0; url=/technologies">
-<link rel="canonical" href="https://unavix.ch/technologies">
-<script>location.replace("/technologies" + (location.hash || ""));</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solutions · UnaVix</title>
+<meta name="description" content="Automate your lab, read slides remotely or build a screening programme: combine UnaVix solutions and ask for a quote.">
+<meta property="og:title" content="Solutions · UnaVix">
+<meta property="og:description" content="Automate your lab, read slides remotely or build a screening programme: combine UnaVix solutions and ask for a quote.">
+<meta property="og:image" content="https://unavix.ch/assets/img/unavix-lockup.png">
+<meta property="og:url" content="https://unavix.ch/solutions">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://unavix.ch/solutions">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=202611274">
 </head>
 <body>
-<p>This page has moved to <a href="/technologies">our technologies page</a>.</p>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="/"><img src="assets/img/unavix-lockup.png" alt="UnaVix home" width="740" height="185"></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/solutions" aria-current="page">Solutions</a></li>
+      <li><a href="/technologies">Technologies</a></li>
+      <li><a href="/cervical-screening">Cervical screening</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a class="btn" href="/get-involved">Get in touch</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Solutions</h1>
+    <p class="lede">Whether you want to automate your laboratory or build an entire screening programme, we have a solution for you. All our solutions can be combined: build your package and ask for a quote.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0" aria-labelledby="start-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="start-title">Where to start</h2>
+      <p class="lede">Pick the starting point closest to your needs, then adjust your package below.</p>
+    </div>
+    <div class="offer-cards">
+      <div class="offer-card static">
+        <strong>Automate your lab</strong>
+        <span class="desc">Consistent, automated slide staining with <a class="text-link" href="/technologies#gyrostainer">GyroStainer</a>, for laboratories and clinics that prepare their own slides.</span>
+        <button class="btn btn-ghost btn-small" type="button" data-preset="lab">Start with this</button>
+      </div>
+      <div class="offer-card static">
+        <strong>Read slides remotely</strong>
+        <span class="desc">Digitised slides reviewed through our <a class="text-link" href="/technologies#portal">telepathology portal</a>, by your own pathologists or ours.</span>
+        <button class="btn btn-ghost btn-small" type="button" data-preset="remote">Start with this</button>
+      </div>
+      <div class="offer-card static">
+        <strong>Build a screening programme</strong>
+        <span class="desc">Automated staining and remote review together, so programmes can screen, triage and treat in a single visit, for example for <a class="text-link" href="/cervical-screening">cervical cancer screening</a>.</span>
+        <button class="btn btn-ghost btn-small" type="button" data-preset="programme">Start with this</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white" id="build" aria-labelledby="build-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="build-title">Build your package</h2>
+      <p class="lede">Choose what you need. Any of our solutions can be combined.</p>
+    </div>
+    <form class="builder" id="builder" novalidate>
+      <div class="pkg-options">
+        <label class="pkg-option" id="pkg-gyrostainer">
+          <input type="checkbox" name="item" value="gyrostainer">
+          <strong>GyroStainer</strong>
+          <span>Automated staining for Pap smears, liquid-based cytology, histology and fine-needle aspiration cytology (FNAC).</span>
+        </label>
+        <div class="pkg-group">
+          <label class="pkg-option" id="pkg-portal">
+            <input type="checkbox" name="item" value="portal">
+            <strong>Telepathology portal</strong>
+            <span>Upload digitised slides and receive results from remote pathologists, without a pathologist on site.</span>
+          </label>
+          <fieldset class="pkg-patho" hidden>
+            <legend>Who reads your slides?</legend>
+            <label><input type="radio" name="patho" value="own" checked> Your own pathologists</label>
+            <label><input type="radio" name="patho" value="unavix"> UnaVix pathologists</label>
+          </fieldset>
+        </div>
+        <p class="pkg-included"><strong>Included in every package:</strong> dedicated support to implement our technologies and your workflows.</p>
+      </div>
+      <aside class="pkg-summary" aria-live="polite">
+        <h3>Your package</h3>
+        <ul id="pkg-list"></ul>
+        <p class="pkg-empty" id="pkg-empty">Choose at least one solution to build your package.</p>
+        <a class="btn" id="pkg-quote" href="/get-involved?topic=quote" aria-disabled="true">Ask for a quote</a>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="support-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="support-title">Support at every step</h2>
+      <p class="lede">We provide dedicated assistance to implement our technologies and adapt your workflows.</p>
+    </div>
+    <ol class="flow">
+      <li><strong>Plan</strong><span>We work with you to design a workflow that fits your setting and the samples you handle.</span></li>
+      <li><strong>Set up and train</strong><span>We help set up the equipment and train your staff to use it.</span></li>
+      <li><strong>Ongoing assistance</strong><span>We stay available to help as your laboratory or programme runs and grows.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="cta-band section-tight">
+  <div class="wrap">
+    <h2>Ready to build your package?</h2>
+    <div class="btn-row">
+      <a class="btn" href="/get-involved?topic=quote">Ask for a quote</a>
+      <a class="btn btn-ghost" href="/technologies">See our technologies</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/img/unavix-lockup-light.png" alt="UnaVix" width="740" height="185">
+        <p>Automated staining and telepathology, close to the point of care.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/technologies#gyrostainer">GyroStainer</a></li>
+          <li><a href="/technologies#portal">Telepathology portal</a></li>
+          <li><a href="/technologies#ai">Machine learning</a></li>
+          <li><a href="/cervical-screening">Cervical cancer screening</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/get-involved">Get in touch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:info@unavix.ch">info@unavix.ch</a></li>
+          <li>Lausanne, Switzerland</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">© <span id="year">2026</span> UnaVix. GyroStainer was developed at the Signal Processing Laboratory 5, EPFL, in collaboration with HUG.</div>
+  </div>
+</footer>
+<script src="assets/js/main.js?v=202611274"></script>
 </body>
 </html>
