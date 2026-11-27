@@ -530,30 +530,40 @@
   /* ---------- solutions: package builder ---------- */
   const builder = document.getElementById("builder");
   if (builder) {
-    const items = builder.querySelectorAll('input[name="item"]');
+    const items = [...builder.querySelectorAll('input[name="item"]')];
     const patho = builder.querySelector(".pkg-patho");
     const list = document.getElementById("pkg-list");
     const empty = document.getElementById("pkg-empty");
     const quote = document.getElementById("pkg-quote");
-    const presets = { lab: ["gyrostainer"], remote: ["portal"], programme: ["gyrostainer", "portal"] };
+    const presetButtons = document.querySelectorAll("[data-preset]");
+    const presets = {
+      lab: ["gyrostainer", "consumables"],
+      remote: ["microscope", "portal"],
+      full: ["prep", "gyrostainer", "consumables", "microscope", "portal"],
+    };
     function update() {
-      const chosen = [...items].filter((i) => i.checked).map((i) => i.value);
-      patho.hidden = !chosen.includes("portal");
-      const who = builder.querySelector('input[name="patho"]:checked').value === "unavix" ? "UnaVix pathologists" : "your own pathologists";
-      const parts = chosen.map((v) => (v === "portal" ? `Telepathology portal, with ${who}` : "GyroStainer"));
-      if (parts.length) parts.push("Implementation support");
+      const chosen = items.filter((i) => i.checked);
+      const values = chosen.map((i) => i.value);
+      patho.hidden = !values.includes("portal");
+      const who = builder.querySelector('input[name="patho"]:checked').value === "unavix" ? "UnaVix pathologists" : "own pathologists";
+      const parts = chosen.map((i) => (i.value === "portal" ? `${i.dataset.label} (${who})` : i.dataset.label));
+      if (parts.length) parts.push("Implementation support and training");
       list.innerHTML = parts.map((p) => `<li>${p}</li>`).join("");
       empty.hidden = parts.length > 0;
-      quote.setAttribute("aria-disabled", String(!chosen.length));
-      quote.href = chosen.length ? `/get-involved?topic=quote&package=${encodeURIComponent(parts.join("; "))}` : "/get-involved?topic=quote";
+      quote.setAttribute("aria-disabled", String(!parts.length));
+      quote.href = parts.length ? `/get-involved?topic=quote&package=${encodeURIComponent(parts.join("; "))}` : "/get-involved?topic=quote";
+      // Highlight a starting point while the selection still matches it exactly.
+      presetButtons.forEach((b) => {
+        const want = presets[b.dataset.preset] || [];
+        b.setAttribute("aria-pressed", String(want.length === values.length && want.every((v) => values.includes(v))));
+      });
     }
     builder.addEventListener("change", update);
     quote.addEventListener("click", (e) => { if (quote.getAttribute("aria-disabled") === "true") e.preventDefault(); });
-    document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => {
+    presetButtons.forEach((b) => b.addEventListener("click", () => {
       const want = presets[b.dataset.preset] || [];
       items.forEach((i) => (i.checked = want.includes(i.value)));
       update();
-      document.getElementById("build").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
     }));
     update();
   }

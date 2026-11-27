@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solutions · UnaVix</title>
-<meta name="description" content="Automate your lab, read slides remotely or build a screening programme: combine UnaVix solutions and ask for a quote.">
+<meta name="description" content="The complete pathology workflow for clinics and hospitals, from sample preparation to remote reading, built around GyroStainer and our telepathology portal.">
 <meta property="og:title" content="Solutions · UnaVix">
-<meta property="og:description" content="Automate your lab, read slides remotely or build a screening programme: combine UnaVix solutions and ask for a quote.">
+<meta property="og:description" content="The complete pathology workflow for clinics and hospitals, from sample preparation to remote reading, built around GyroStainer and our telepathology portal.">
 <meta property="og:image" content="https://unavix.ch/assets/img/unavix-lockup.png">
 <meta property="og:url" content="https://unavix.ch/solutions">
 <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202611274">
+<link rel="stylesheet" href="assets/css/style.css?v=202611275">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,34 +42,9 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <h1>Solutions</h1>
-    <p class="lede">Whether you want to automate your laboratory or build an entire screening programme, we have a solution for you. All our solutions can be combined: build your package and ask for a quote.</p>
-  </div>
-</section>
-
-<section class="section" style="padding-top:0" aria-labelledby="start-title">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="start-title">Where to start</h2>
-      <p class="lede">Pick the starting point closest to your needs, then adjust your package below.</p>
-    </div>
-    <div class="offer-cards">
-      <div class="offer-card static">
-        <strong>Automate your lab</strong>
-        <span class="desc">Consistent, automated slide staining with <a class="text-link" href="/technologies#gyrostainer">GyroStainer</a>, for laboratories and clinics that prepare their own slides.</span>
-        <button class="btn btn-ghost btn-small" type="button" data-preset="lab">Start with this</button>
-      </div>
-      <div class="offer-card static">
-        <strong>Read slides remotely</strong>
-        <span class="desc">Digitised slides reviewed through our <a class="text-link" href="/technologies#portal">telepathology portal</a>, by your own pathologists or ours.</span>
-        <button class="btn btn-ghost btn-small" type="button" data-preset="remote">Start with this</button>
-      </div>
-      <div class="offer-card static">
-        <strong>Build a screening programme</strong>
-        <span class="desc">Automated staining and remote review together, so programmes can screen, triage and treat in a single visit, for example for <a class="text-link" href="/cervical-screening">cervical cancer screening</a>.</span>
-        <button class="btn btn-ghost btn-small" type="button" data-preset="programme">Start with this</button>
-      </div>
-    </div>
+    <p class="eyebrow">Solutions</p>
+    <h1>The complete pathology workflow</h1>
+    <p class="lede">We know that implementing a pathology workflow in a clinic or hospital is complicated. Alongside our own enabling technologies, <a class="text-link" href="/technologies#gyrostainer">GyroStainer</a> and the <a class="text-link" href="/technologies#portal">telepathology portal</a>, we can supply everything else it takes, from sample preparation to remote reading, and support you in putting it all in place.</p>
   </div>
 </section>
 
@@ -77,20 +52,53 @@
   <div class="wrap">
     <div class="section-head">
       <h2 id="build-title">Build your package</h2>
-      <p class="lede">Choose what you need. Any of our solutions can be combined.</p>
+      <p class="lede">Whether you want to automate your laboratory or build an entire screening programme, choose what you need. Every part of the workflow can be combined into a package that fits your setting.</p>
+    </div>
+    <div class="pkg-presets" role="group" aria-label="Common packages">
+      <span>Start from:</span>
+      <button type="button" data-preset="lab" aria-pressed="false">Automate your lab</button>
+      <button type="button" data-preset="remote" aria-pressed="false">Read slides remotely</button>
+      <button type="button" data-preset="full" aria-pressed="false">The complete workflow</button>
     </div>
     <form class="builder" id="builder" novalidate>
       <div class="pkg-options">
-        <label class="pkg-option" id="pkg-gyrostainer">
-          <input type="checkbox" name="item" value="gyrostainer">
-          <strong>GyroStainer</strong>
-          <span>Automated staining for Pap smears, liquid-based cytology, histology and fine-needle aspiration cytology (FNAC).</span>
-        </label>
-        <div class="pkg-group">
-          <label class="pkg-option" id="pkg-portal">
-            <input type="checkbox" name="item" value="portal">
-            <strong>Telepathology portal</strong>
-            <span>Upload digitised slides and receive results from remote pathologists, without a pathologist on site.</span>
+        <div class="pkg-stage" role="group" aria-labelledby="stage-prepare">
+          <h3 class="pkg-stage-title" id="stage-prepare"><span class="num">1</span>Prepare</h3>
+          <label class="pkg-option">
+            <input type="checkbox" name="item" value="prep" data-label="Vortex mixer and centrifuge">
+            <strong>Vortex mixer and centrifuge</strong>
+            <span>To prepare liquid-based cytology samples before staining.</span>
+          </label>
+        </div>
+        <div class="pkg-stage" role="group" aria-labelledby="stage-stain">
+          <h3 class="pkg-stage-title" id="stage-stain"><span class="num">2</span>Stain</h3>
+          <div class="pkg-row">
+            <label class="pkg-option">
+              <input type="checkbox" name="item" value="gyrostainer" data-label="GyroStainer">
+              <strong>GyroStainer <span class="ours">Our technology</span></strong>
+              <span>Our automated stainer: Pap, H&amp;E or Giemsa, six slides per run.</span>
+            </label>
+            <label class="pkg-option">
+              <input type="checkbox" name="item" value="consumables" data-label="Slides and reagents">
+              <strong>Slides and reagents</strong>
+              <span>The slides and staining reagents for each protocol.</span>
+            </label>
+          </div>
+        </div>
+        <div class="pkg-stage" role="group" aria-labelledby="stage-digitise">
+          <h3 class="pkg-stage-title" id="stage-digitise"><span class="num">3</span>Digitise</h3>
+          <label class="pkg-option">
+            <input type="checkbox" name="item" value="microscope" data-label="Digital microscope">
+            <strong>Digital microscope</strong>
+            <span>Scans each stained slide into a high-resolution image.</span>
+          </label>
+        </div>
+        <div class="pkg-stage" role="group" aria-labelledby="stage-read">
+          <h3 class="pkg-stage-title" id="stage-read"><span class="num">4</span>Read</h3>
+          <label class="pkg-option">
+            <input type="checkbox" name="item" value="portal" data-label="Telepathology portal">
+            <strong>Telepathology portal <span class="ours">Our technology</span></strong>
+            <span>Pathologists review the slides remotely and send the results back to the clinic.</span>
           </label>
           <fieldset class="pkg-patho" hidden>
             <legend>Who reads your slides?</legend>
@@ -98,12 +106,28 @@
             <label><input type="radio" name="patho" value="unavix"> UnaVix pathologists</label>
           </fieldset>
         </div>
-        <p class="pkg-included"><strong>Included in every package:</strong> dedicated support to implement our technologies and your workflows.</p>
+        <div class="pkg-stage" role="group" aria-labelledby="stage-power">
+          <h3 class="pkg-stage-title" id="stage-power"><span class="num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>Power and internet</h3>
+          <p class="pkg-note">We know many clinics face power cuts or have no reliable internet, so we can supply both.</p>
+          <div class="pkg-row">
+            <label class="pkg-option">
+              <input type="checkbox" name="item" value="ups" data-label="Backup power (UPS)">
+              <strong>Backup power</strong>
+              <span>An uninterruptible power supply (UPS) keeps staining and scanning running through power cuts.</span>
+            </label>
+            <label class="pkg-option">
+              <input type="checkbox" name="item" value="internet" data-label="Satellite internet (Starlink)">
+              <strong>Satellite internet</strong>
+              <span>A Starlink connection links clinics without reliable internet to the portal.</span>
+            </label>
+          </div>
+        </div>
+        <p class="pkg-included"><strong>Included in every package:</strong> dedicated support to implement the workflow and train your team.</p>
       </div>
       <aside class="pkg-summary" aria-live="polite">
         <h3>Your package</h3>
         <ul id="pkg-list"></ul>
-        <p class="pkg-empty" id="pkg-empty">Choose at least one solution to build your package.</p>
+        <p class="pkg-empty" id="pkg-empty">Choose what you need, or start from one of the packages above.</p>
         <a class="btn" id="pkg-quote" href="/get-involved?topic=quote" aria-disabled="true">Ask for a quote</a>
       </aside>
     </form>
@@ -114,11 +138,11 @@
   <div class="wrap">
     <div class="section-head">
       <h2 id="support-title">Support at every step</h2>
-      <p class="lede">We provide dedicated assistance to implement our technologies and adapt your workflows.</p>
+      <p class="lede">Dedicated assistance to put the workflow in place and keep it running.</p>
     </div>
     <ol class="flow">
-      <li><strong>Plan</strong><span>We work with you to design a workflow that fits your setting and the samples you handle.</span></li>
-      <li><strong>Set up and train</strong><span>We help set up the equipment and train your staff to use it.</span></li>
+      <li><strong>Plan</strong><span>We look at your setting, the samples you handle and your power and internet supply, and design a workflow that fits.</span></li>
+      <li><strong>Set up and train</strong><span>We help set up the equipment and train your staff to prepare, stain and digitise slides.</span></li>
       <li><strong>Ongoing assistance</strong><span>We stay available to help as your laboratory or programme runs and grows.</span></li>
     </ol>
   </div>
@@ -126,9 +150,9 @@
 
 <section class="cta-band section-tight">
   <div class="wrap">
-    <h2>Ready to build your package?</h2>
+    <h2>Let's explore a tailored solution together.</h2>
     <div class="btn-row">
-      <a class="btn" href="/get-involved?topic=quote">Ask for a quote</a>
+      <a class="btn" href="/get-involved?topic=quote">Get in touch</a>
       <a class="btn btn-ghost" href="/technologies">See our technologies</a>
     </div>
   </div>
@@ -164,6 +188,6 @@
     <div class="footer-base">© <span id="year">2026</span> UnaVix. GyroStainer was developed at the Signal Processing Laboratory 5, EPFL, in collaboration with HUG.</div>
   </div>
 </footer>
-<script src="assets/js/main.js?v=202611274"></script>
+<script src="assets/js/main.js?v=202611275"></script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 Static site (HTML, CSS, JavaScript). No build step, no dependencies.
 
 ## Pages
-- `index.html`: home (microscope hero, what the tools can be used for, status of each tool, next steps, partners)
-- `solutions.html`: what customers can buy: starting points, a package builder that pre-fills the contact form, and implementation support
+- `index.html`: home (microscope hero, what the tools can be used for, our technologies, our roadmap, partner with us)
+- `solutions.html`: the complete pathology workflow customers can buy (sample preparation, staining, digitisation, remote reading, power and internet), as a package builder that pre-fills the contact form, plus implementation support
 - `technologies.html`: GyroStainer (`#gyrostainer`), the telepathology portal (`#portal`) and machine learning (`#ai`)
-- `cervical-screening.html`: our first focus: the problem, the same-day pathway, a scroll-driven walk through each step, why cytology, thermal ablation
+- `cervical-screening.html`: our first focus: the problem, the same-day pathway, a scroll-driven walk through each step, why on-site pathology still matters with HPV testing, why cytology, thermal ablation
 - `about.html`: founders, collaborators and partners
 - `get-involved.html`: contact form, sent through Web3Forms to info@unavix.ch. Preselect a topic with `/get-involved?topic=quote` (also `pilot`, `funding`, `lab`, `portal`, `research`, `press`, `join`, `curious`)
 - `technology.html`, `gyrostainer.html`, `telecytology.html`: redirects from old addresses, so old links keep working
